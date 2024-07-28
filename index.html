@@ -11,6 +11,58 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.progress-wrapper {
+            height: 130px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .wave {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wave::before,
+        .wave::after {
+            content: "";
+            position: absolute;
+            width: 700px;
+            height: 800px;
+            bottom: 0;
+            left: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: translateX(-50%) rotate(0);
+            animation: rotate 6s linear infinite;
+            z-index: 10;
+        }
+
+        .wave::after {
+            border-radius: 47%;
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateX(-50%) rotate(0);
+            animation: rotate 10s linear -5s infinite;
+            z-index: 20;
+        }
+
+        @keyframes rotate {
+            50% {
+                transform: translateX(-50%) rotate(180deg);
+            }
+            100% {
+                transform: translateX(-50%) rotate(360deg);
+            }
+        }
+		#Photo-Gallery {
+			margin-bottom: 10px; 
+		}
+
+		.skills-section {
+			margin-top: 100px; 
+		}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -19,7 +71,7 @@
 
 				<!-- Header -->
 					<header id="header" class="alt">
-						<a href="index.html" class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a>
+						<a href="index.html" class="logo"><strong>Elizabeth</strong> <span>Chanda</span></a>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -29,31 +81,68 @@
 					<nav id="menu">
 						<ul class="links">
 							<li><a href="index.html">Home</a></li>
-							<li><a href="landing.html">Landing</a></li>
-							<li><a href="generic.html">Generic</a></li>
-							<li><a href="elements.html">Elements</a></li>
+							<li><a href="elements.html">About Me</a></li>
+							<li><a href="landing.html">Projects</a></li>
+							<li><a href="generic.html">Experiences</a></li>
+							<li><a href="https://docs.google.com/document/d/1r27xt1lOz0WuqXG_1KowhBSjzrhvc2gCuvuykHQ6_A8/edit?usp=sharing">Resume</a></li>
 						</ul>
 						<ul class="actions stacked">
-							<li><a href="#" class="button primary fit">Get Started</a></li>
-							<li><a href="#" class="button fit">Log In</a></li>
-						</ul>
 					</nav>
 
 				<!-- Banner -->
 					<section id="banner" class="major">
 						<div class="inner">
 							<header class="major">
-								<h1>Hi, my name is Forty</h1>
+								<h1>Hello...今日わ...Bonjour... My Name is Elizabeth Chanda! 👩🏻‍💻 <h1>
 							</header>
 							<div class="content">
-								<p>A responsive site template designed by HTML5 UP<br />
-								and released under the Creative Commons.</p>
+								<p>Computer Science Student | Designer | Video Game Enthusiast | Future Engineer | Avid Learner | Inventor |</p>
 								<ul class="actions">
 									<li><a href="#one" class="button next scrolly">Get Started</a></li>
 								</ul>
 							</div>
 						</div>
 					</section>
+
+				<!-- School -->
+				<div id="School">
+
+					<!-- One -->
+						<section id="one" class="tiles">
+							<article>
+								<span class="image">
+									<img src="images/pic05.jpg" alt="" />
+								</span>
+								<header class="major">
+									<h3><a>University of North Carolina at Chapel Hill 🐏</a></h3>
+									<p>Sophomore Student</p>
+								</header>
+							</article>
+							<article>
+								<span class="image">
+									<img src="images/pic01.jpg" alt="" />
+								</span>
+								<header class="major">
+									<h3><a>North Carolina School of Science and Mathematics Program 🦄</a></h3>
+									<p>2021 - 2023</p>
+								</header>
+							</article>
+						</section>
+						
+
+				<!-- Me -->
+					<div class="inner">
+						<header class="major">
+							<h2>Who is Elizabeth Chanda?</h2>
+						</header>
+						<p>Learn more about my career goals, achievements, and personal interests!</p>
+						<ul class="actions">
+							<li><a href="elements.html" class="button next">Click Here</a></li>
+						</ul>
+					</div>
+				</section>
+
+				</div>
 
 				<!-- Main -->
 					<div id="main">
@@ -65,8 +154,8 @@
 										<img src="images/pic01.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Aliquam</a></h3>
-										<p>Ipsum dolor sit amet</p>
+										<h3><a href="landing.html" class="link">Time Travel Chronicles</a></h3>
+										<p>Video Game Design & Development</p>
 									</header>
 								</article>
 								<article>
@@ -74,8 +163,8 @@
 										<img src="images/pic02.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Tempus</a></h3>
-										<p>feugiat amet tempus</p>
+										<h3><a href="landing.html" class="link">Ment-Her</a></h3>
+										<p>Fidelity Investments</p>
 									</header>
 								</article>
 								<article>
@@ -83,8 +172,8 @@
 										<img src="images/pic03.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Magna</a></h3>
-										<p>Lorem etiam nullam</p>
+										<h3><a href="landing.html" class="link">Bookstore Management System</a></h3>
+										<p>University of North Carolina at Charlotte</p>
 									</header>
 								</article>
 								<article>
@@ -92,8 +181,8 @@
 										<img src="images/pic04.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Ipsum</a></h3>
-										<p>Nisl sed aliquam</p>
+										<h3><a href="landing.html" class="link">Facial Recogniton Models Comparsion</a></h3>
+										<p>Summer Research and Innovation Program</p>
 									</header>
 								</article>
 								<article>
@@ -101,8 +190,8 @@
 										<img src="images/pic05.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Consequat</a></h3>
-										<p>Ipsum dolor sit amet</p>
+										<h3><a href="generic.html" class="link">Underwater Robotics</a></h3>
+										<p>Hardware & Collaborative Environments</p>
 									</header>
 								</article>
 								<article>
@@ -110,92 +199,100 @@
 										<img src="images/pic06.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Etiam</a></h3>
-										<p>Feugiat amet tempus</p>
+										<h3><a href="generic.html" class="link">Decoding the Definition of STEM Series</a></h3>
+										<p>Overachiever Magazine</p>
 									</header>
 								</article>
 							</section>
 
-						<!-- Two -->
-							<section id="two">
-								<div class="inner">
-									<header class="major">
-										<h2>Massa libero</h2>
-									</header>
-									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.</p>
-									<ul class="actions">
-										<li><a href="landing.html" class="button next">Get Started</a></li>
-									</ul>
-								</div>
-							</section>
 
 					</div>
 
-				<!-- Contact -->
-					<section id="contact">
-						<div class="inner">
-							<section>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="6"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Clear" /></li>
-									</ul>
-								</form>
-							</section>
-							<section class="split">
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-envelope"></span>
-										<h3>Email</h3>
-										<a href="#">information@untitled.tld</a>
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-phone"></span>
-										<h3>Phone</h3>
-										<span>(000) 000-0000 x12387</span>
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-home"></span>
-										<h3>Address</h3>
-										<span>1234 Somewhere Road #5432<br />
-										Nashville, TN 00000<br />
-										United States of America</span>
-									</div>
-								</section>
-							</section>
+				<!-- Skills -->
+				<section id="skills" class="section-spacing">
+					<element class="inner">
+				</element>
+					<div class="container">
+					  <div class="row">
+						<div class="col-lg-12 text-center">
+							<h2 class="section-title">~~~~~~Skills</h2>
 						</div>
-					</section>
+						<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+						  <div class="card shadow text-center yellow-skill">
+							<div class="position-relative rounded-top progress-wrapper" data-color="#fdb157">
+							  <div class="wave" data-progress="90%"></div>
+							</div>
+							<div class="card-footer bg-white">
+							  <h4 class="card-title">Java Language</h4>
+							</div>
+						  </div>
+						</div>
+						<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+						  <div class="card shadow text-center">
+							<div class="position-relative rounded-top progress-wrapper" data-color="#9473e6">
+							  <div class="wave" data-progress="60%"></div>
+							</div>
+							<div class="card-footer bg-white">
+							  <h4 class="card-title">C++ Language</h4>
+							</div>
+						  </div>
+						</div>
+						<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+						  <div class="card shadow text-center">
+							<div class="position-relative rounded-top progress-wrapper" data-color="#bdecf6">
+							  <div class="wave" data-progress="80%"></div>
+							</div>
+							<div class="card-footer bg-white">
+							  <h4 class="card-title">SQL Language</h4>
+							</div>
+						  </div>
+						</div>
+						<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+						  <div class="card shadow text-center">
+							<div class="position-relative rounded-top progress-wrapper" data-color="#ffbcaa">
+							  <div class="wave" data-progress="70%"></div>
+							</div>
+							<div class="card-footer bg-white">
+							  <h4 class="card-title">R Language</h4>
+							</div>
+						  </div>
+						</div>
+						<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+							<div class="card shadow text-center">
+							  <div class="position-relative rounded-top progress-wrapper" data-color="#fdb157">
+								<div class="wave" data-progress="90%"></div>
+							  </div>
+							  <div class="card-footer bg-white">
+								<h4 class="card-title">Python Language</h4>
+							  </div>
+							</div>
+						  </div>
+						  <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+							<div class="card shadow text-center">
+							  <div class="position-relative rounded-top progress-wrapper" data-color="#9473e6">
+								<div class="wave" data-progress="60%"></div>
+							  </div>
+							  <div class="card-footer bg-white">
+								<h4 class="card-title">Arduino (Hardware & Software)</h4>
+							  </div>
+							</div>
+						  </div>
+					  </div>
+					</div>
+				  </section>
+
+					
 
 				<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">
 							<ul class="icons">
-								<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://app.joinhandshake.com/stu" class="icon solid alt fa-handshake"><span class="label">Handshake</span></a></li>
+								<li><a href="https://github.com/elizabethchanda27" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="https://www.linkedin.com/in/elizabeth-chanda-102684282/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
 							</ul>
 							<ul class="copyright">
-								<li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+								<li>&copy; EC Designs 🌸</li><li>
 							</ul>
 						</div>
 					</footer>
@@ -211,5 +308,20 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+		<!-- Wave Animation -->
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+			var progressWrappers = document.querySelectorAll('.progress-wrapper');
+			
+			progressWrappers.forEach(function(wrapper) {
+				var wave = wrapper.querySelector('.wave');
+				var progress = wave.getAttribute('data-progress');
+				var color = wrapper.getAttribute('data-color');
+			
+				wave.style.backgroundColor = color;
+				wave.style.height = progress;
+				});
+			});
+		</script>
 	</body>
 </html>
