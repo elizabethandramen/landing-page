@@ -4139,3 +4139,14 @@ body.is-menu-visible #menu .inner {
   white-space: nowrap;
   overflow: hidden;
 }
+
+.actions {
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.actions .button {
+  text-align: center;
+}
