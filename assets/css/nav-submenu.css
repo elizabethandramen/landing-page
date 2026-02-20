@@ -80,3 +80,44 @@
   background: rgba(255, 122, 162, 0.12);
   color: #8c5b4a;
 }
+
+/* Hide scrollbar on nav menu */
+#menu .inner {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#menu .inner::-webkit-scrollbar {
+  display: none;
+}
+
+/* Locked/private page styling */
+.page-locked .locked-content {
+  text-align: center;
+  padding: 4em 2em;
+}
+.page-locked .locked-icon {
+  font-size: 3em;
+  display: block;
+  margin-bottom: 0.5em;
+  opacity: 0.8;
+}
+.page-locked .locked-content h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.page-locked .locked-content p {
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Travels placeholder styling */
+.travels-placeholder {
+  text-align: center;
+  font-size: 1.25em;
+  letter-spacing: 0.1em;
+  font-style: italic;
+  opacity: 0.9;
+  padding: 2em 0;
+}

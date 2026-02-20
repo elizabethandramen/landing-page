@@ -9,9 +9,22 @@
 		<title>Landing - Forty by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/nav-submenu.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/nav-submenu.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<style>
+			/* Make Projects banner white to match Time Travel Chronicles section */
+			#banner.style2:after {
+				background-color: #ffffff !important;
+			}
+			/* Make all project content sections share the same white background */
+			#main {
+				background-color: #ffffff;
+			}
+			#three .box {
+				background-color: #ffffff;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -21,7 +34,7 @@
 				<!-- Header -->
 				<!-- Note: The "styleN" class below should match that of the banner element. -->
 					<header id="header" class="alt style2">
-						<a href="index.html" class="logo"><strong>Elizabeth</strong> <span>Chanda</span></a>
+						<a href="../index.html" class="logo"><strong>Elizabeth</strong> <span>Chanda</span></a>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -30,14 +43,15 @@
 				<!-- Menu -->
 					<nav id="menu">
 						<ul class="links">
-							<li><a href="index.html">Home</a></li>
+							<li><a href="../index.html">Home</a></li>
 							<li><a href="elements.html">About Me</a></li>
 							<li class="menu-has-sub">
 								<div class="menu-row">
-									<a href="https://docs.google.com/document/d/1r27xt1lOz0WuqXG_1KowhBSjzrhvc2gCuvuykHQ6_A8/edit?usp=sharing">Resume</a>
+									<span class="menu-label">Career</span>
 									<button type="button" class="menu-sub-toggle" aria-label="Toggle">▾</button>
 								</div>
 								<ul class="submenu">
+									<li><a href="../docs/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
 									<li><a href="landing.html">Projects</a></li>
 									<li><a href="generic.html">Experiences</a></li>
 									<li><a href="accomplishments.html">Accomplishments</a></li>
@@ -46,14 +60,12 @@
 							<li><a href="playground.html">Playground</a></li>
 							<li class="menu-has-sub">
 								<div class="menu-row">
-									<span class="menu-label">Personal</span>
+									<span class="menu-label">Life Outside Code</span>
 									<button type="button" class="menu-sub-toggle" aria-label="Toggle">▾</button>
 								</div>
 								<ul class="submenu">
-									<li><a href="dreamboard.html">Dream Board</a></li>
 									<li><a href="photobooth.html">Photobooth</a></li>
 									<li><a href="travels.html">Travels</a></li>
-									<li><a href="hobbies.html">Hobbies</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -64,7 +76,7 @@
 					<section id="banner" class="style2">
 						<div class="inner">
 							<span class="image">
-								<img src="images/pic07.jpg" alt="" />
+								<img src="../images/backgrounds/pic07.jpg" alt="" />
 							</span>
 							<header class="major">
 								<h1>Projects 💿</h1>
@@ -97,7 +109,7 @@
 							<section id="two" class="spotlights">
 								<section>
 									<a href="generic.html" class="image">
-										<img src="images/pic10.jpg" alt="" data-position="25% 25%" />
+										<img src="../images/backgrounds/pic10.jpg" alt="" data-position="25% 25%" />
 									</a>
 									<div class="content">
 										<div class="inner">
@@ -116,7 +128,7 @@
 								</section>								
 								<section>
 									<a href="generic.html" class="image">
-										<img src="images/pic10.jpg" alt="" data-position="25% 25%" />
+										<img src="../images/backgrounds/pic10.jpg" alt="" data-position="25% 25%" />
 									</a>
 									<div class="content">
 										<div class="inner">
@@ -130,15 +142,14 @@
 											<ul class="actions">
 												<li><a href="https://www.figma.com/design/2NiKTeOaeZLnkJOx9Wt0ef/Pearl-Hacks-Website-Pages?node-id=0-1&t=rXYFrZ78sOgyh9gt-1" class="button">Figma Prototype</a></li>
 												<li><a href="https://pearlhacks.com/" class="button">Website</a></li>
-												<li><a href="https://github.com/pearlhacks/2025website" class="button">Github (Main Website)</a></li>
-												<li><a href="https://github.com/elizabethchanda27/elizabeth-18-schedule-page" class="button">Github (My Branch)</a></li>
+												<li><a href="https://github.com/pearlhacks/2025website" class="button">Github</a></li>
 											</ul>
 										</div>
 									</div>
 								</section>
 								<section>
 									<a href="generic.html" class="image">
-										<img src="images/pic10.jpg" alt="" data-position="25% 25%" />
+										<img src="../images/backgrounds/pic10.jpg" alt="" data-position="25% 25%" />
 									</a>
 									<div class="content">
 										<div class="inner">
@@ -157,7 +168,7 @@
 								</section>
 								<section>
 									<a href="generic.html" class="image">
-										<img src="images/pic08.jpg" alt="" data-position="center center" />
+										<img src="../images/backgrounds/pic08.jpg" alt="" data-position="center center" />
 									</a>
 									<div class="content">
 										<div class="inner">
@@ -174,7 +185,7 @@
 								</section>
 								<section>
 									<a href="generic.html" class="image">
-										<img src="images/pic09.jpg" alt="" data-position="top center" />
+										<img src="../images/backgrounds/pic09.jpg" alt="" data-position="top center" />
 									</a>
 									<div class="content">
 										<div class="inner">
@@ -191,7 +202,7 @@
 								</section>
 								<section>
 									<a href="generic.html" class="image">
-										<img src="images/pic10.jpg" alt="" data-position="25% 25%" />
+										<img src="../images/backgrounds/pic10.jpg" alt="" data-position="25% 25%" />
 									</a>
 									<div class="content">
 										<div class="inner">
@@ -240,13 +251,13 @@
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
 
 	</body>
 </html>

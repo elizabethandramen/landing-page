@@ -2282,7 +2282,7 @@ button:disabled,
   z-index: 2;
 }
 .tiles article:after {
-  background-color: rgba(253, 248, 246, 0.25);
+  background-color: #ebe4e0;
   content: "";
   display: block;
   height: 100%;
@@ -2310,33 +2310,43 @@ button:disabled,
   width: 60%;
 }
 .tiles article:nth-child(6n-5):before {
-  background-color: #c5d4eb;
+  background-color: #74a12e;
 }
 .tiles article:nth-child(6n-4):before {
-  background-color: #fff4b8;
+  background-color: #fc9fb1;
+}
+#School .tiles article.tile-unc:before {
+  background-color: #6b8f7a !important;
+}
+#School .tiles article.tile-ncssm:before {
+  background-color: #fcbacb !important;
 }
 .tiles article:nth-child(6n-3):before {
-  background-color: #b8e0c8;
+  background-color: #ffdabe;
 }
 .tiles article:nth-child(6n-2):before {
-  background-color: #b8d4e8;
+  background-color: #b9dca9;
 }
 .tiles article:nth-child(6n-1):before {
-  background-color: #f5c5d9;
+  background-color: #F3D4DA;
 }
 .tiles article:nth-child(6n):before {
-  background-color: #e0d4f0;
+  background-color: #e8a8b0;
 }
 #main .tiles article:nth-child(1):before {
-  background-color: #ffd9b8;
+  background-color: #fc9fb1;
 }
 #main .tiles article.tile-menther:before,
 #main .tiles article:nth-child(2):before {
-  background-color: #b8e0c8 !important;
+  background-color: #b9dca9 !important;
+}
+#main .tiles article.tile-facial:before,
+#main .tiles article:nth-child(3):before {
+  background-color: #74a12e !important;
 }
 #main .tiles article.tile-bookstore:before,
-#main .tiles article:nth-child(3):before {
-  background-color: #ffc9b8 !important;
+#main .tiles article:nth-child(4):before {
+  background-color: #fcbacb !important;
 }
 @media screen and (max-width: 1280px) {
   .tiles article {
@@ -2795,7 +2805,7 @@ body.is-preload #header.alt {
   -ms-transition-delay: 0.75s;
   transition-delay: 0.75s;
   pointer-events: none;
-  background-color: #faf7f2;
+  background-color: #fdf8f6;
   content: "";
   display: block;
   height: 100%;
@@ -2863,22 +2873,22 @@ body.is-preload #header.alt {
   opacity: 0.75;
 }
 #banner.style1:after {
-  background-color: #c5d4eb;
+  background-color: #F3D4DA;
 }
 #banner.style2:after {
-  background-color: #fff4b8;
+  background-color: #A7B59E;
 }
 #banner.style3:after {
-  background-color: #b8e0c8;
+  background-color: #F8D0CD;
 }
 #banner.style4:after {
-  background-color: #b8d4e8;
+  background-color: #799567;
 }
 #banner.style5:after {
-  background-color: #f5c5d9;
+  background-color: #F8D0DE;
 }
 #banner.style6:after {
-  background-color: #e0d4f0;
+  background-color: #5B744B;
 }
 body.is-preload #banner:after {
   opacity: 1;
@@ -2922,6 +2932,98 @@ body.is-preload #banner > .inner {
     height: auto;
     min-height: 0;
     max-height: none;
+  }
+}
+
+/* Data Mac Windows section on home */
+#data-windows {
+  padding: 4em 0 1em 0;
+}
+#data-windows .inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5em;
+}
+.data-windows-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 2.5rem;
+  max-width: 100%;
+  overflow: hidden;
+  padding-bottom: 1rem;
+  animation: data-windows-scroll 22s linear infinite;
+}
+.mac-window {
+  background: transparent;
+  border-radius: 14px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
+  overflow: hidden;
+  width: 260px;
+  flex: 0 0 260px;
+}
+.mac-window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.7rem;
+  background: #f5f5f7;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6d4a3a;
+}
+.mac-window-dots {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+.mac-window-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.mac-window-dots .dot-red {
+  background: #ff5f57;
+}
+.mac-window-dots .dot-yellow {
+  background: #febc2e;
+}
+.mac-window-dots .dot-green {
+  background: #28c840;
+}
+.mac-window-title {
+  font-weight: 600;
+}
+.mac-window-body {
+  background: #ffffff;
+  padding: 0;
+}
+.mac-window-body img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes data-windows-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-40%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@media screen and (max-width: 736px) {
+  #data-windows {
+    padding-top: 2.5em;
+  }
+  .mac-window {
+    width: 220px;
   }
 }
 @media screen and (max-width: 480px) {

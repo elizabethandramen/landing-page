@@ -28,21 +28,23 @@
 		letter-spacing-alt:	0.25em
 	);
 
-// Palette. (d-wardrobe pink/cream aesthetic, pastel banners)
+// Palette. (d-wardrobe pink/cream, Strawberry Matcha + skin tones for banners only)
 	$palette: (
 		bg:					#fdf8f6,
 		bg-alt:				#fff5f5,
-		banner-overlay:		#faf7f2,
+		banner-overlay:		#ffe5c8,
 		fg:					#8c5b4a,
 		fg-bold:			#6d4a3a,
 		fg-light:			rgba(140,91,74,0.4),
 		border:				#e8c4c9,
 		border-bg:			rgba(232,196,201,0.3),
 		highlight:			#ff7aa2,
-		accent1:			#c5d4eb,
-		accent2:			#fff4b8,
-		accent3:			#b8e0c8,
-		accent4:			#b8d4e8,
-		accent5:			#f5c5d9,
-		accent6:			#e0d4f0
+		accent1:			#74a12e,
+		accent2:			#b9dca9,
+		accent3:			#fc9fb1,
+		accent4:			#fcbacb,
+		accent5:			#ffdabe,
+		accent6:			#ffe5c8,
+		accent7:			#e8a8b0,
+		accent8:			#f0e6d3
 	);

@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<script src="script.js?v=2"></script>
+		<script src="assets/js/script.js?v=2"></script>
 		<title>Home</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -74,37 +74,29 @@
 			50% { opacity: 0; }
 		}
 		#banner .content {
-			position: relative;
 			display: flex;
 			align-items: center;
-			justify-content: center;
+			justify-content: flex-start;
 			flex-wrap: nowrap;
 			gap: 1.5em;
 		}
 		#banner .content > p {
 			margin: 0;
-			width: 36em;
+			max-width: none;
 			flex-shrink: 0;
 			min-height: 3em;
+			white-space: nowrap;
+			overflow-x: auto;
 		}
-		#banner .content .actions {
-			position: absolute;
-			right: 0;
-			top: 50%;
-			transform: translateY(-50%);
-			margin: 0;
+		#banner .content > p.typing-line {
+			-webkit-overflow-scrolling: touch;
 		}
 		@media (max-width: 736px) {
 			#banner .content {
-				flex-direction: column;
+				align-items: flex-start;
 			}
 			#banner .content > p {
-				width: 100%;
 				min-height: 2.5em;
-			}
-			#banner .content .actions {
-				position: static;
-				transform: none;
 			}
 		}
 		</style>
@@ -126,29 +118,28 @@
 					<nav id="menu">
 						<ul class="links">
 							<li><a href="index.html">Home</a></li>
-							<li><a href="elements.html">About Me</a></li>
+							<li><a href="pages/elements.html">About Me</a></li>
 							<li class="menu-has-sub">
 								<div class="menu-row">
-									<a href="https://docs.google.com/document/d/1r27xt1lOz0WuqXG_1KowhBSjzrhvc2gCuvuykHQ6_A8/edit?usp=sharing">Resume</a>
+									<span class="menu-label">Career</span>
 									<button type="button" class="menu-sub-toggle" aria-label="Toggle">▾</button>
 								</div>
 								<ul class="submenu">
-									<li><a href="landing.html">Projects</a></li>
-									<li><a href="generic.html">Experiences</a></li>
-									<li><a href="accomplishments.html">Accomplishments</a></li>
+									<li><a href="docs/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+									<li><a href="pages/landing.html">Projects</a></li>
+									<li><a href="pages/generic.html">Experiences</a></li>
+									<li><a href="pages/accomplishments.html">Accomplishments</a></li>
 								</ul>
 							</li>
-							<li><a href="playground.html">Playground</a></li>
+							<li><a href="pages/playground.html">Playground</a></li>
 							<li class="menu-has-sub">
 								<div class="menu-row">
-									<span class="menu-label">Personal</span>
+									<span class="menu-label">Life Outside Code</span>
 									<button type="button" class="menu-sub-toggle" aria-label="Toggle">▾</button>
 								</div>
 								<ul class="submenu">
-									<li><a href="dreamboard.html">Dream Board</a></li>
-									<li><a href="photobooth.html">Photobooth</a></li>
-									<li><a href="travels.html">Travels</a></li>
-									<li><a href="hobbies.html">Hobbies</a></li>
+									<li><a href="pages/photobooth.html">Photobooth</a></li>
+									<li><a href="pages/travels.html">Travels</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -162,10 +153,7 @@
 								<h1>Hello...今日は...Bonjour... My Name is Elizabeth Chanda! 👩🏻‍💻 <h1>
 							</header>
 							<div class="content">
-								<p><span id="typing-text"></span><span id="caret" class="caret"></span></p>
-								<ul class="actions">
-									<li><a href="#one" class="button next scrolly">Get Started</a></li>
-								</ul>
+								<p class="typing-line"><span id="typing-text"></span><span id="caret" class="caret"></span></p>
 							</div>
 						</div>
 					</section>
@@ -175,18 +163,18 @@
 
 					<!-- One -->
 						<section id="one" class="tiles">
-							<article>
+							<article class="tile-unc">
 								<span class="image">
-									<img src="images/pic05.jpg" alt="" />
+									<img src="images/backgrounds/pic05.jpg" alt="" />
 								</span>
 								<header class="major">
 									<h3><a>University of North Carolina at Chapel Hill 🐏</a></h3>
 									<p>2023 - 2027</p>
 								</header>
 							</article>
-							<article>
+							<article class="tile-ncssm">
 								<span class="image">
-									<img src="images/pic01.jpg" alt="" />
+									<img src="images/backgrounds/pic01.jpg" alt="" />
 								</span>
 								<header class="major">
 									<h3><a>North Carolina School of Science and Mathematics Program 🦄</a></h3>
@@ -203,7 +191,7 @@
 						</header>
 						<p>Learn more about my career goals, achievements, and personal interests!</p>
 						<ul class="actions">
-							<li><a href="elements.html" class="button next">Click Here</a></li>
+							<li><a href="pages/elements.html" class="button next">Click Here</a></li>
 						</ul>
 					</div>
 				</section>
@@ -217,55 +205,55 @@
 							<section id="one" class="tiles">
 								<article>
 									<span class="image">
-										<img src="images/pic01.jpg" alt="" />
+										<img src="images/backgrounds/pic01.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Time Travel Chronicles</a></h3>
+										<h3><a href="pages/landing.html" class="link">Time Travel Chronicles</a></h3>
 										<p>Video Game Design & Development</p>
 									</header>
 								</article>
 								<article class="tile-menther">
 									<span class="image">
-										<img src="images/pic02.jpg" alt="" />
+										<img src="images/backgrounds/pic02.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Ment-Her</a></h3>
+										<h3><a href="pages/landing.html" class="link">Ment-Her</a></h3>
 										<p>Fidelity Investments</p>
+									</header>
+								</article>
+								<article class="tile-facial">
+									<span class="image">
+										<img src="images/backgrounds/pic04.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="pages/landing.html" class="link">Facial Recognition Models Comparison</a></h3>
+										<p>Summer Research and Innovation Program</p>
 									</header>
 								</article>
 								<article class="tile-bookstore">
 									<span class="image">
-										<img src="images/pic03.jpg" alt="" />
+										<img src="images/backgrounds/pic03.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Bookstore Management System</a></h3>
+										<h3><a href="pages/landing.html" class="link">Bookstore Management System</a></h3>
 										<p>University of North Carolina at Charlotte</p>
 									</header>
 								</article>
 								<article>
 									<span class="image">
-										<img src="images/pic04.jpg" alt="" />
+										<img src="images/backgrounds/pic05.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Facial Recognition Models Comparison</a></h3>
-										<p>Summer Research and Innovation Program</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic05.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="generic.html" class="link">Underwater Robotics</a></h3>
+										<h3><a href="pages/generic.html" class="link">Underwater Robotics</a></h3>
 										<p>Hardware & Collaborative Environments</p>
 									</header>
 								</article>
 								<article>
 									<span class="image">
-										<img src="images/pic06.jpg" alt="" />
+										<img src="images/backgrounds/pic06.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="generic.html" class="link">Decoding the Definition of STEM Series</a></h3>
+										<h3><a href="pages/generic.html" class="link">Decoding the Definition of STEM Series</a></h3>
 										<p>Overachiever Magazine</p>
 									</header>
 								</article>
@@ -275,6 +263,55 @@
 					</div>
 
 				
+
+				<!-- Data Mac Windows -->
+					<section id="data-windows">
+						<div class="inner">
+							<div class="data-windows-grid">
+								<div class="mac-window mac-window-left">
+									<div class="mac-window-header">
+										<div class="mac-window-dots">
+											<span class="dot dot-red"></span>
+											<span class="dot dot-yellow"></span>
+											<span class="dot dot-green"></span>
+										</div>
+										<span class="mac-window-title">CREATIVITY</span>
+									</div>
+									<div class="mac-window-body">
+										<img src="images/backgrounds/pic01.jpg" alt="Creativity preview" />
+									</div>
+								</div>
+
+								<div class="mac-window mac-window-bottom">
+									<div class="mac-window-header">
+										<div class="mac-window-dots">
+											<span class="dot dot-red"></span>
+											<span class="dot dot-yellow"></span>
+											<span class="dot dot-green"></span>
+										</div>
+										<span class="mac-window-title">INVENTOR</span>
+									</div>
+									<div class="mac-window-body">
+										<img src="images/backgrounds/pic02.jpg" alt="Inventor preview" />
+									</div>
+								</div>
+
+								<div class="mac-window mac-window-right">
+									<div class="mac-window-header">
+										<div class="mac-window-dots">
+											<span class="dot dot-red"></span>
+											<span class="dot dot-yellow"></span>
+											<span class="dot dot-green"></span>
+										</div>
+										<span class="mac-window-title">RESOURCEFUL</span>
+									</div>
+									<div class="mac-window-body">
+										<img src="images/backgrounds/pic03.jpg" alt="Resourceful preview" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
 
 				<!-- Footer -->
 					<footer id="footer">

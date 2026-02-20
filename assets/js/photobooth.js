@@ -23,7 +23,7 @@
       ctx.lineTo(x + step, y)
     }
     ctx.lineTo(x2, y)
-    ctx.strokeStyle = 'rgba(0,0,0,0.3)'
+    ctx.strokeStyle = 'rgba(0,0,0,0.18)'
     ctx.lineWidth = 1
     ctx.stroke()
   }
@@ -92,13 +92,16 @@
     canvas.width = stripW
     canvas.height = stripH
     const ctx = canvas.getContext('2d')
-    ctx.fillStyle = '#e8e8e8'
+    ctx.fillStyle = '#e8e4dc'
     ctx.fillRect(0, 0, stripW, stripH)
     const loadImg = (src) =>
       new Promise((res, rej) => {
         const i = new Image()
         i.onload = () => res(i)
-        i.onerror = rej
+        i.onerror = (err) => {
+          console.error('Failed to load image:', src, err)
+          rej(new Error(`Failed to load image`))
+        }
         i.src = src
       })
     return Promise.all(photos.map(loadImg)).then((images) => {
@@ -108,10 +111,10 @@
         const w = frameW
         const h = frameH
         if (i > 0) drawSerration(ctx, y - gap / 2, stripPadding, stripPadding + frameW, 3)
-        ctx.fillStyle = '#f5f5f5'
+        ctx.fillStyle = '#faf8f5'
         roundRect(ctx, x, y, w, h, corner)
         ctx.fill()
-        ctx.strokeStyle = 'rgba(0,0,0,0.2)'
+        ctx.strokeStyle = 'rgba(0,0,0,0.12)'
         ctx.lineWidth = 1
         roundRect(ctx, x, y, w, h, corner)
         ctx.stroke()
@@ -313,10 +316,6 @@
             </aside>
           </div>
         </div>
-
-        <div class="pb-bubbles" aria-hidden="true">
-          ${Array.from({ length: 40 }, (_, i) => `<span class="pb-bubble pb-bubble-${i + 1}"></span>`).join('')}
-        </div>
       </div>
       <canvas id="pb-canvas" style="display:none"></canvas>
     `
@@ -334,11 +333,9 @@
           if (state.captured) saveToGallery({ imageData: state.captured, type: state.mode })
           state.polaroidSaveConfirm = false
           reset()
-          state.mode = 'strip'
         } else if (action === 'confirm-nosave') {
           state.polaroidSaveConfirm = false
           reset()
-          state.mode = 'strip'
         } else if (action === 'back-decorate') {
           state.stripPreviewUrl = null
           state.polaroidPreviewUrl = null
@@ -496,16 +493,16 @@
     const ctx = canvas.getContext('2d')
     canvas.width = 320
     canvas.height = 400
-    ctx.shadowColor = 'rgba(0,0,0,0.4)'
+    ctx.shadowColor = 'rgba(0,0,0,0.3)'
     ctx.shadowBlur = 14
     ctx.shadowOffsetY = 8
-    ctx.fillStyle = '#f5f5f5'
+    ctx.fillStyle = '#f5f5eb'
     ctx.fillRect(0, 0, 320, 400)
     ctx.shadowColor = 'transparent'
     ctx.shadowBlur = 0
     ctx.shadowOffsetY = 0
     drawVideoCover(ctx, video, 20, 20, 280, 280)
-    ctx.fillStyle = '#f5f5f5'
+    ctx.fillStyle = '#f5f5eb'
     ctx.fillRect(0, 300, 320, 100)
     state.polaroidPreviewUrl = canvas.toDataURL('image/png')
     state.decorateMode = true
@@ -532,6 +529,7 @@
     const video = $('#pb-video')
     const canvas = $('#pb-canvas')
     if (!video || !canvas || !state.stream) return
+    state.countdown = null
     const ctx = canvas.getContext('2d')
     canvas.width = video.videoWidth
     canvas.height = video.videoHeight
@@ -540,10 +538,19 @@
     state.stripPhotos = [...state.stripPhotos, dataUrl]
     state.canTakeStripPhoto = true
     if (state.stripPhotos.length >= STRIP_PHOTO_COUNT) {
+      state.canTakeStripPhoto = false
       buildStripFromPhotos(state.stripPhotos).then((stripDataUrl) => {
         state.stripPreviewUrl = stripDataUrl
         state.decorateMode = true
         state.stickers = []
+        state.stripPhotos = []
+        state.countdown = null
+        state.canTakeStripPhoto = true
+        render()
+      }).catch((err) => {
+        console.error('Failed to build strip:', err)
+        state.error = 'Failed to process photos. Please try again.'
+        state.canTakeStripPhoto = true
         state.stripPhotos = []
         render()
       })
@@ -579,10 +586,6 @@
   }
 
   function reset() {
-    if (state.stream) {
-      state.stream.getTracks().forEach((t) => t.stop())
-      state.stream = null
-    }
     state.captured = null
     state.stripAnimated = false
     state.stripPhotos = []
@@ -593,9 +596,10 @@
     state.canTakeStripPhoto = true
     state.selectedStickerId = null
     state.draggingStickerId = null
-    if (state.stripCountdownId) clearInterval(state.stripCountdownId)
-    const video = document.getElementById('pb-video')
-    if (video) video.srcObject = null
+    if (state.stripCountdownId) {
+      clearInterval(state.stripCountdownId)
+      state.stripCountdownId = null
+    }
     render()
   }
 
