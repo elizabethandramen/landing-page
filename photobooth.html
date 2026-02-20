@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Photobooth - Elizabeth Chanda</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/nav-submenu.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* MacBook Photo Booth style - inspired by megangao.co */
+			#photobooth-page {
+				--pb-bg: #f7f7f7;
+				--pb-bg-elevated: #fafafa;
+				--pb-surface: #e8e8e8;
+				--pb-border: #d1d1d6;
+				--pb-text: #1d1d1f;
+				--pb-text-muted: #6e6e73;
+				--pb-accent: #0071e3;
+				background: linear-gradient(180deg, #e8e8ed 0%, #d2d2d7 100%);
+				border-radius: 20px;
+				padding: 2.5rem;
+				margin: 2rem 0;
+				box-shadow: 0 25px 80px rgba(0,0,0,0.2), 0 0 1px rgba(0,0,0,0.1);
+				position: relative;
+			}
+			.pb-macbook-frame {
+				background: linear-gradient(180deg, #2d2d2d 0%, #1a1a1a 8%, #2d2d2d 15%, #1a1a1a 100%);
+				border-radius: 16px;
+				padding: 12px 14px 18px;
+				box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1), 0 20px 60px rgba(0,0,0,0.4);
+				max-width: 720px;
+				margin: 0 auto 1.5rem;
+			}
+			.pb-macbook-screen {
+				background: #f7f7f7;
+				border-radius: 8px;
+				overflow: auto;
+				min-height: 420px;
+				padding: 1rem;
+				box-shadow: inset 0 0 0 2px rgba(0,0,0,0.08);
+			}
+			.pb-macbook-notch {
+				position: absolute;
+				top: 12px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 90px;
+				height: 24px;
+				background: #1a1a1a;
+				border-radius: 0 0 12px 12px;
+				z-index: 10;
+			}
+			.pb-macbook-frame { position: relative; }
+			#photobooth-page .pb-page { position: relative; min-height: 80vh; }
+			#photobooth-page .pb-header { margin-bottom: 1.5rem; text-align: center; }
+			#photobooth-page .pb-title { font-size: 1.75rem; font-weight: 600; color: var(--pb-text); margin: 0 0 0.25rem 0; letter-spacing: -0.02em; }
+			#photobooth-page .pb-desc { color: var(--pb-text-muted); font-size: 0.95rem; margin: 0; -webkit-font-smoothing: antialiased; }
+			#photobooth-page .pb-saved-toast { color: var(--pb-accent); font-weight: 600; margin: 0 0 0.5rem 0; }
+			#photobooth-page .pb-error { color: #e88; margin-bottom: 1rem; text-align: center; }
+			#photobooth-page .pb-confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 100; }
+			#photobooth-page .pb-confirm { background: var(--pb-bg-elevated); border: 1px solid var(--pb-border); border-radius: 12px; padding: 1.5rem; max-width: 320px; }
+			#photobooth-page .pb-confirm p { margin: 0 0 1rem 0; color: var(--pb-text); }
+			#photobooth-page .pb-confirm-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+			#photobooth-page .pb-stage { position: relative; z-index: 1; background: var(--pb-bg); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+			#photobooth-page .pb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; }
+			#photobooth-page .pb-tab { padding: 0.5rem 1rem; border-radius: 8px; border: none; background: var(--pb-bg-elevated); color: var(--pb-text-muted); font-weight: 500; cursor: pointer; transition: all 0.2s; }
+			#photobooth-page .pb-tab:hover { background: #e8e8ed; color: var(--pb-text); }
+			#photobooth-page .pb-tab.active { background: var(--pb-accent); color: #fff; }
+			#photobooth-page .pb-layout { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: flex-start; max-width: 900px; margin: 0 auto; }
+			#photobooth-page .pb-area { flex: 1 1 320px; min-width: 0; max-width: 400px; }
+			#photobooth-page .pb-camera-wrap { position: relative; border-radius: 12px; overflow: hidden; background: #1d1d1f; aspect-ratio: 4/3; margin-bottom: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+			#photobooth-page .pb-camera-wrap video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); border-radius: 12px; }
+			#photobooth-page .pb-countdown { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); color: #fff; font-size: 4rem; font-weight: 700; animation: pb-pulse 1s ease-in-out; }
+			@keyframes pb-pulse { 0% { opacity: 0; transform: scale(0.5); } 20% { opacity: 1; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
+			#photobooth-page .pb-strip-controls, #photobooth-page .pb-strip-btns { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; align-items: center; margin-top: 0.5rem; }
+			#photobooth-page .pb-strip-progress { margin: 0 0 0.5rem 0; font-size: 0.95rem; color: var(--pb-text-muted); text-align: center; width: 100%; }
+			#photobooth-page .pb-btn { padding: 0.5rem 1rem; border-radius: 8px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; border: none; font-family: inherit; font-size: 0.95rem; }
+			#photobooth-page .pb-btn-primary { background: var(--pb-accent); color: #fff; border: none; }
+			#photobooth-page .pb-btn-secondary { border: 1px solid var(--pb-border); background: #fff; color: var(--pb-text); }
+			#photobooth-page .pb-btn-capture { display: block; width: 100%; padding: 0.75rem; background: var(--pb-accent); color: #fff; font-weight: 600; border: none; border-radius: 10px; }
+			#photobooth-page .pb-btn-capture:disabled { opacity: 0.5; cursor: not-allowed; }
+			#photobooth-page .pb-decorate { text-align: center; }
+			#photobooth-page .pb-decorate-title { font-size: 1.2rem; color: var(--pb-accent); margin: 0 0 1rem 0; }
+			#photobooth-page .pb-strip-preview { position: relative; display: inline-block; max-width: 200px; margin-bottom: 1rem; }
+			#photobooth-page .pb-strip-preview img { display: block; width: 100%; height: auto; border-radius: 4px; }
+			#photobooth-page .pb-sticker-overlay { position: absolute; transform: translate(-50%, -50%); cursor: grab; user-select: none; padding: 4px; }
+			#photobooth-page .pb-sticker-overlay.selected { outline: 2px solid var(--pb-accent); outline-offset: 2px; border-radius: 8px; }
+			#photobooth-page .pb-sticker-emoji { font-size: 2rem; line-height: 1; display: block; }
+			#photobooth-page .pb-sticker-remove { position: absolute; top: -6px; right: -6px; width: 22px; height: 22px; border-radius: 50%; border: none; background: var(--pb-accent); color: var(--pb-bg); font-size: 1rem; cursor: pointer; line-height: 1; padding: 0; }
+			#photobooth-page .pb-sticker-palette { margin-bottom: 1rem; padding: 1.25rem; background: var(--pb-bg-elevated); border: 1px solid var(--pb-border); border-radius: 12px; max-width: 320px; margin-left: auto; margin-right: auto; }
+			#photobooth-page .pb-sticker-cat { margin-bottom: 1rem; }
+			#photobooth-page .pb-sticker-label { font-size: 0.8rem; font-weight: 600; color: var(--pb-text-muted); text-transform: uppercase; }
+			#photobooth-page .pb-sticker-btns { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem; margin-top: 0.35rem; }
+			#photobooth-page .pb-sticker-btn { aspect-ratio: 1; max-width: 48px; margin: 0 auto; border-radius: 8px; border: 2px solid var(--pb-border); background: var(--pb-surface); font-size: 1.5rem; cursor: pointer; transition: transform 0.2s; }
+			#photobooth-page .pb-sticker-btn:hover { transform: scale(1.08); }
+			#photobooth-page .pb-decorate-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+			#photobooth-page .pb-booth-machine { position: relative; width: 100%; max-width: 260px; margin: 0 auto; background: linear-gradient(180deg, #2d2d2d 0%, #1a1a1a 100%); border-radius: 16px; padding: 20px 18px 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08); }
+			#photobooth-page .pb-booth-curtain { height: 8px; background: linear-gradient(90deg, #333 0%, #555 50%, #333 100%); border-radius: 4px; margin-bottom: 14px; }
+			#photobooth-page .pb-booth-slot { background: #0a0a0a; border-radius: 8px; padding: 8px 10px; min-height: 16px; overflow: visible; position: relative; box-shadow: inset 0 2px 8px rgba(0,0,0,0.8); }
+			#photobooth-page .pb-booth-strip { display: flex; justify-content: center; transform: translateY(-100%); opacity: 0.98; transition: transform 1s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.3s ease; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4)); }
+			#photobooth-page .pb-booth-strip.out { transform: translateY(0); }
+			#photobooth-page .pb-booth-strip img { display: block; max-width: 100%; height: auto; border-radius: 2px; }
+			#photobooth-page .pb-saved-toast { color: var(--pb-accent); font-weight: 600; margin: 0 0 0.5rem 0; }
+			#photobooth-page .pb-result-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+			#photobooth-page .pb-gallery { flex: 0 1 260px; min-width: 220px; padding: 1rem; }
+			#photobooth-page .pb-gallery-title { font-size: 1.1rem; margin: 0 0 0.75rem 0; color: var(--pb-text); }
+			#photobooth-page .pb-gallery-empty { font-size: 0.9rem; color: var(--pb-text-muted); margin: 0; }
+			#photobooth-page .pb-gallery-list { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.75rem; }
+			#photobooth-page .pb-gallery-item { flex: 0 0 auto; width: 100px; }
+			#photobooth-page .pb-gallery-thumb { cursor: pointer; position: relative; display: block; }
+			#photobooth-page .pb-gallery-thumb img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; border-radius: 4px; }
+			#photobooth-page .pb-gallery-type { position: absolute; bottom: 4px; left: 4px; right: 4px; font-size: 0.65rem; font-weight: 600; color: #fff; background: rgba(0,0,0,0.6); border-radius: 4px; padding: 2px 4px; text-align: center; }
+			#photobooth-page .pb-gallery-detail { padding: 0.5rem 0 0; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+			#photobooth-page .pb-bubbles { position: fixed; left: 0; right: 0; top: 0; bottom: 0; pointer-events: none; z-index: 0; }
+			#photobooth-page .pb-bubble { position: absolute; border-radius: 50%; opacity: 0.08; background: #0071e3; }
+			#photobooth-page .pb-bubble-1 { width: 48px; height: 48px; top: 5%; left: 3%; animation: pb-float 8s ease-in-out infinite; }
+			#photobooth-page .pb-bubble-2 { width: 36px; height: 36px; top: 12%; right: 5%; animation: pb-float 10s ease-in-out infinite 1s; }
+			#photobooth-page .pb-bubble-3 { width: 42px; height: 42px; bottom: 20%; left: 2%; animation: pb-float 9s ease-in-out infinite 2s; }
+			#photobooth-page .pb-bubble-4 { width: 32px; height: 32px; bottom: 35%; right: 3%; animation: pb-float 7s ease-in-out infinite 0.5s; }
+			#photobooth-page .pb-bubble-5 { width: 40px; height: 40px; top: 40%; left: 1%; animation: pb-float 11s ease-in-out infinite 3s; }
+			#photobooth-page .pb-bubble-6 { width: 44px; height: 44px; top: 70%; right: 2%; animation: pb-float 8s ease-in-out infinite 1.5s; }
+			@keyframes pb-float { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(6px, -8px); } 66% { transform: translate(-4px, 6px); } }
+			#photobooth-page #main { background: transparent !important; }
+		</style>
+	</head>
+	<body class="is-preload">
+		<div id="wrapper">
+			<header id="header">
+				<a href="index.html" class="logo"><strong>Elizabeth</strong> <span>Chanda</span></a>
+				<nav><a href="#menu">Menu</a></nav>
+			</header>
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="elements.html">About Me</a></li>
+					<li class="menu-has-sub">
+						<div class="menu-row">
+							<a href="https://docs.google.com/document/d/1r27xt1lOz0WuqXG_1KowhBSjzrhvc2gCuvuykHQ6_A8/edit?usp=sharing">Resume</a>
+							<button type="button" class="menu-sub-toggle" aria-label="Toggle">▾</button>
+						</div>
+						<ul class="submenu">
+							<li><a href="landing.html">Projects</a></li>
+							<li><a href="generic.html">Experiences</a></li>
+							<li><a href="accomplishments.html">Accomplishments</a></li>
+						</ul>
+					</li>
+					<li><a href="playground.html">Playground</a></li>
+					<li class="menu-has-sub">
+						<div class="menu-row">
+							<span class="menu-label">Personal</span>
+							<button type="button" class="menu-sub-toggle" aria-label="Toggle">▾</button>
+						</div>
+						<ul class="submenu">
+							<li><a href="dreamboard.html">Dream Board</a></li>
+							<li><a href="photobooth.html">Photobooth</a></li>
+							<li><a href="travels.html">Travels</a></li>
+							<li><a href="hobbies.html">Hobbies</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="actions stacked"></ul>
+			</nav>
+			<div id="main" class="alt">
+				<div id="photobooth-page">
+					<div class="pb-macbook-frame">
+						<div class="pb-macbook-notch"></div>
+						<div class="pb-macbook-screen">
+							<div id="photobooth-app"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://app.joinhandshake.com/stu" class="icon solid alt fa-handshake"><span class="label">Handshake</span></a></li>
+						<li><a href="https://github.com/elizabethchanda27" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="https://www.linkedin.com/in/elizabeth-chanda-102684282/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+					</ul>
+					<ul class="copyright"><li>&copy; EC Designs 🌸</li></ul>
+				</div>
+			</footer>
+		</div>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/photobooth.js"></script>
+	</body>
+</html>

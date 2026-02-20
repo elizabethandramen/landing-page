@@ -6,11 +6,12 @@
 -->
 <html>
 	<head>
-		<script src="script.js"></script>
+		<script src="script.js?v=2"></script>
 		<title>Home</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/nav-submenu.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
 			.progress-wrapper {
@@ -60,8 +61,51 @@
 			margin-bottom: 10px; 
 		}
 
-		.skills-section {
-			margin-top: 100px; 
+		.caret {
+			display: inline-block;
+			width: 2px;
+			height: 1em;
+			background: currentColor;
+			margin-left: 2px;
+			vertical-align: text-bottom;
+			animation: caret-blink 1s step-end infinite;
+		}
+		@keyframes caret-blink {
+			50% { opacity: 0; }
+		}
+		#banner .content {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: nowrap;
+			gap: 1.5em;
+		}
+		#banner .content > p {
+			margin: 0;
+			width: 36em;
+			flex-shrink: 0;
+			min-height: 3em;
+		}
+		#banner .content .actions {
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			margin: 0;
+		}
+		@media (max-width: 736px) {
+			#banner .content {
+				flex-direction: column;
+			}
+			#banner .content > p {
+				width: 100%;
+				min-height: 2.5em;
+			}
+			#banner .content .actions {
+				position: static;
+				transform: none;
+			}
 		}
 		</style>
 	</head>
@@ -83,9 +127,30 @@
 						<ul class="links">
 							<li><a href="index.html">Home</a></li>
 							<li><a href="elements.html">About Me</a></li>
-							<li><a href="landing.html">Projects</a></li>
-							<li><a href="generic.html">Experiences</a></li>
-							<li><a href="https://docs.google.com/document/d/1r27xt1lOz0WuqXG_1KowhBSjzrhvc2gCuvuykHQ6_A8/edit?usp=sharing">Resume</a></li>
+							<li class="menu-has-sub">
+								<div class="menu-row">
+									<a href="https://docs.google.com/document/d/1r27xt1lOz0WuqXG_1KowhBSjzrhvc2gCuvuykHQ6_A8/edit?usp=sharing">Resume</a>
+									<button type="button" class="menu-sub-toggle" aria-label="Toggle">▾</button>
+								</div>
+								<ul class="submenu">
+									<li><a href="landing.html">Projects</a></li>
+									<li><a href="generic.html">Experiences</a></li>
+									<li><a href="accomplishments.html">Accomplishments</a></li>
+								</ul>
+							</li>
+							<li><a href="playground.html">Playground</a></li>
+							<li class="menu-has-sub">
+								<div class="menu-row">
+									<span class="menu-label">Personal</span>
+									<button type="button" class="menu-sub-toggle" aria-label="Toggle">▾</button>
+								</div>
+								<ul class="submenu">
+									<li><a href="dreamboard.html">Dream Board</a></li>
+									<li><a href="photobooth.html">Photobooth</a></li>
+									<li><a href="travels.html">Travels</a></li>
+									<li><a href="hobbies.html">Hobbies</a></li>
+								</ul>
+							</li>
 						</ul>
 						<ul class="actions stacked">
 					</nav>
@@ -94,10 +159,10 @@
 					<section id="banner" class="major">
 						<div class="inner">
 							<header class="major">
-								<h1>Hello...今日わ...Bonjour... My Name is Elizabeth Chanda! 👩🏻‍💻 <h1>
+								<h1>Hello...今日は...Bonjour... My Name is Elizabeth Chanda! 👩🏻‍💻 <h1>
 							</header>
 							<div class="content">
-								<p>Computer Science Student | Designer | Video Game Enthusiast | Future Engineer | Activist | Inventor | Artist </p>
+								<p><span id="typing-text"></span><span id="caret" class="caret"></span></p>
 								<ul class="actions">
 									<li><a href="#one" class="button next scrolly">Get Started</a></li>
 								</ul>
@@ -116,7 +181,7 @@
 								</span>
 								<header class="major">
 									<h3><a>University of North Carolina at Chapel Hill 🐏</a></h3>
-									<p>Sophomore Student</p>
+									<p>2023 - 2027</p>
 								</header>
 							</article>
 							<article>
@@ -159,7 +224,7 @@
 										<p>Video Game Design & Development</p>
 									</header>
 								</article>
-								<article>
+								<article class="tile-menther">
 									<span class="image">
 										<img src="images/pic02.jpg" alt="" />
 									</span>
@@ -168,7 +233,7 @@
 										<p>Fidelity Investments</p>
 									</header>
 								</article>
-								<article>
+								<article class="tile-bookstore">
 									<span class="image">
 										<img src="images/pic03.jpg" alt="" />
 									</span>
@@ -182,7 +247,7 @@
 										<img src="images/pic04.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Facial Recogniton Models Comparsion</a></h3>
+										<h3><a href="landing.html" class="link">Facial Recognition Models Comparison</a></h3>
 										<p>Summer Research and Innovation Program</p>
 									</header>
 								</article>
@@ -210,101 +275,6 @@
 					</div>
 
 				
-					<!-- Skills -->
-					<section id="skills" class="section-spacing">
-						<!-- Typing Effect Container -->
-						<div id="typing-container">
-							<h2><span id="typing-text"></span><span id="caret" class="caret"></span></h2>
-						</div>
-						<div class="skills-wrapper">
-						<div class="container">
-							<div class="row">
-							<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
-								<div class="card shadow text-center yellow-skill">
-								<div class="position-relative rounded-top progress-wrapper" data-color="#fdb157">
-									<div class="wave" data-progress="90%"></div>
-								</div>
-								<div class="card-footer bg-white">
-									<h4 class="card-title">Java Language</h4>
-								</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
-								<div class="card shadow text-center">
-								<div class="position-relative rounded-top progress-wrapper" data-color="#9473e6">
-									<div class="wave" data-progress="60%"></div>
-								</div>
-								<div class="card-footer bg-white">
-									<h4 class="card-title">C++ Language</h4>
-								</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
-								<div class="card shadow text-center">
-								<div class="position-relative rounded-top progress-wrapper" data-color="#bdecf6">
-									<div class="wave" data-progress="80%"></div>
-								</div>
-								<div class="card-footer bg-white">
-									<h4 class="card-title">SQL Language</h4>
-								</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
-								<div class="card shadow text-center">
-								<div class="position-relative rounded-top progress-wrapper" data-color="#ffbcaa">
-									<div class="wave" data-progress="70%"></div>
-								</div>
-								<div class="card-footer bg-white">
-									<h4 class="card-title">R Language</h4>
-								</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
-								<div class="card shadow text-center">
-								<div class="position-relative rounded-top progress-wrapper" data-color="#77DD77">
-									<div class="wave" data-progress="90%"></div>
-								</div>
-								<div class="card-footer bg-white">
-									<h4 class="card-title">Python Language</h4>
-								</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
-								<div class="card shadow text-center">
-								<div class="position-relative rounded-top progress-wrapper" data-color="#FF6961">
-									<div class="wave" data-progress="60%"></div>
-								</div>
-								<div class="card-footer bg-white">
-									<h4 class="card-title">Arduino (Hardware & Software)</h4>
-								</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
-								<div class="card shadow text-center">
-								<div class="position-relative rounded-top progress-wrapper" data-color="#FFD1DC">
-									<div class="wave" data-progress="60%"></div>
-								</div>
-								<div class="card-footer bg-white">
-									<h4 class="card-title">HTML</h4>
-								</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
-								<div class="card shadow text-center">
-								<div class="position-relative rounded-top progress-wrapper" data-color="#FDFD96">
-									<div class="wave" data-progress="60%"></div>
-								</div>
-								<div class="card-footer bg-white">
-									<h4 class="card-title">Javascript</h4>
-								</div>
-								</div>
-							</div>
-							</div>
-						</div>
-						</div>
-					</section>
-  
-					
 
 				<!-- Footer -->
 					<footer id="footer">
@@ -331,20 +301,5 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-		<!-- Wave Animation -->
-		<script>
-			document.addEventListener("DOMContentLoaded", function() {
-			var progressWrappers = document.querySelectorAll('.progress-wrapper');
-			
-			progressWrappers.forEach(function(wrapper) {
-				var wave = wrapper.querySelector('.wave');
-				var progress = wave.getAttribute('data-progress');
-				var color = wrapper.getAttribute('data-color');
-			
-				wave.style.backgroundColor = color;
-				wave.style.height = progress;
-				});
-			});
-		</script>
 	</body>
 </html>

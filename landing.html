@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/nav-submenu.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -31,9 +32,30 @@
 						<ul class="links">
 							<li><a href="index.html">Home</a></li>
 							<li><a href="elements.html">About Me</a></li>
-							<li><a href="landing.html">Projects</a></li>
-							<li><a href="generic.html">Experiences</a></li>
-							<li><a href="https://docs.google.com/document/d/1r27xt1lOz0WuqXG_1KowhBSjzrhvc2gCuvuykHQ6_A8/edit?usp=sharing">Resume</a></li>
+							<li class="menu-has-sub">
+								<div class="menu-row">
+									<a href="https://docs.google.com/document/d/1r27xt1lOz0WuqXG_1KowhBSjzrhvc2gCuvuykHQ6_A8/edit?usp=sharing">Resume</a>
+									<button type="button" class="menu-sub-toggle" aria-label="Toggle">▾</button>
+								</div>
+								<ul class="submenu">
+									<li><a href="landing.html">Projects</a></li>
+									<li><a href="generic.html">Experiences</a></li>
+									<li><a href="accomplishments.html">Accomplishments</a></li>
+								</ul>
+							</li>
+							<li><a href="playground.html">Playground</a></li>
+							<li class="menu-has-sub">
+								<div class="menu-row">
+									<span class="menu-label">Personal</span>
+									<button type="button" class="menu-sub-toggle" aria-label="Toggle">▾</button>
+								</div>
+								<ul class="submenu">
+									<li><a href="dreamboard.html">Dream Board</a></li>
+									<li><a href="photobooth.html">Photobooth</a></li>
+									<li><a href="travels.html">Travels</a></li>
+									<li><a href="hobbies.html">Hobbies</a></li>
+								</ul>
+							</li>
 						</ul>
 						<ul class="actions stacked">
 					</nav>
@@ -174,7 +196,7 @@
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>Facial Recognition Model Comparsions 🤖</h3>
+												<h3>Facial Recognition Model Comparisons 🤖</h3>
 											</header>
 											<p>During the Summer Research and Innovation Program at NCSSM, I learned about the discrepancies and bias in machine learning and AI. 
 											Eventually, I created facial recognition models using datasets of 16,130 animal species images to evaluate the accuracy of Eigenfaces, FisherFaces, and Local Binary Pattern Histograms, and presented the findings.

@@ -279,6 +279,11 @@
 			.on('click', function(event) {
 				event.stopPropagation();
 			})
+			.on('click', '.menu-sub-toggle', function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+				$(this).closest('.menu-has-sub').toggleClass('menu-expanded');
+			})
 			.on('click', 'a', function(event) {
 
 				var href = $(this).attr('href');

@@ -1,5 +1,5 @@
 function typeText() {
-  const texts = ["Programming Skills and Languages"];
+  const texts = ["Computer Science Student | Designer | Video Game Enthusiast | Future Engineer | Activist | Inventor | Artist"];
   let index = 0;
   const typingSpeed = 100; // Speed of typing in milliseconds
   const deletingSpeed = 50; // Speed of deleting in milliseconds
