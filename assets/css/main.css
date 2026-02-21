@@ -1727,10 +1727,10 @@ a.icon.alt:before {
   transition: background-color 0.2s ease-in-out;
 }
 a.icon.alt:hover:before {
-  background-color: #ff7aa2;
+  background-color: #74a12e;
 }
 a.icon.alt:active:before {
-  background-color: rgb(249.7625, 50.7375, 110.5946428571);
+  background-color: rgb(72.4211956522, 98.2375, 32.2625);
 }
 
 /* Image */
@@ -2282,7 +2282,7 @@ button:disabled,
   z-index: 2;
 }
 .tiles article:after {
-  background-color: #ebe4e0;
+  background-color: rgba(253, 248, 246, 0.25);
   content: "";
   display: block;
   height: 100%;
@@ -2313,40 +2313,28 @@ button:disabled,
   background-color: #74a12e;
 }
 .tiles article:nth-child(6n-4):before {
-  background-color: #fc9fb1;
-}
-#School .tiles article.tile-unc:before {
-  background-color: #6b8f7a !important;
-}
-#School .tiles article.tile-ncssm:before {
-  background-color: #fcbacb !important;
-}
-.tiles article:nth-child(6n-3):before {
-  background-color: #ffdabe;
-}
-.tiles article:nth-child(6n-2):before {
   background-color: #b9dca9;
 }
-.tiles article:nth-child(6n-1):before {
-  background-color: #F3D4DA;
-}
-.tiles article:nth-child(6n):before {
-  background-color: #e8a8b0;
-}
-#main .tiles article:nth-child(1):before {
+.tiles article:nth-child(6n-3):before {
   background-color: #fc9fb1;
 }
-#main .tiles article.tile-menther:before,
-#main .tiles article:nth-child(2):before {
-  background-color: #b9dca9 !important;
+.tiles article:nth-child(6n-2):before {
+  background-color: #fcbacb;
 }
-#main .tiles article.tile-facial:before,
-#main .tiles article:nth-child(3):before {
-  background-color: #74a12e !important;
+.tiles article:nth-child(6n-1):before {
+  background-color: #ffdabe;
 }
-#main .tiles article.tile-bookstore:before,
-#main .tiles article:nth-child(4):before {
-  background-color: #fcbacb !important;
+.tiles article:nth-child(6n):before {
+  background-color: #ffe5c8;
+}
+.tiles article {
+  /* UNC & NCSSM */
+}
+.tiles article.tile-unc:before {
+  background-color: #6b8f7a;
+}
+.tiles article.tile-ncssm:before {
+  background-color: #fcbacb;
 }
 @media screen and (max-width: 1280px) {
   .tiles article {
@@ -2382,6 +2370,147 @@ button:disabled,
   }
 }
 
+#data-windows {
+  padding: 4em 0 1em 0;
+  overflow: hidden;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+#data-windows .inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5em;
+  background: transparent !important;
+}
+
+.data-windows-scroll-wrap {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%;
+  padding: 1.5rem 0;
+  cursor: grab;
+  user-select: none;
+  background: transparent !important;
+}
+.data-windows-scroll-wrap:active {
+  cursor: grabbing;
+}
+
+.data-windows-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2.5rem;
+  width: max-content;
+  padding: 0 2.5rem;
+  will-change: transform;
+  flex-shrink: 0;
+  animation: data-windows-pingpong 55s linear infinite alternate;
+}
+
+.data-windows-scroll-wrap:hover .data-windows-grid {
+  animation-play-state: paused;
+}
+
+@keyframes data-windows-pingpong {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-66.666%, 0, 0);
+  }
+}
+.mac-window {
+  background: transparent;
+  border-radius: 14px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 260px;
+  flex: 0 0 260px;
+  height: 260px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mac-window:hover {
+  transform: scale(1.08) translateY(-8px);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.15);
+}
+
+.mac-window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.7rem;
+  background: #f5f5f7;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6d4a3a;
+  height: 28px;
+  min-height: 28px;
+  flex-shrink: 0;
+}
+
+.mac-window-dots {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.mac-window-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.mac-window-dots .dot-red {
+  background: #ff5f57;
+}
+
+.mac-window-dots .dot-yellow {
+  background: #febc2e;
+}
+
+.mac-window-dots .dot-green {
+  background: #28c840;
+}
+
+.mac-window-title {
+  font-weight: 600;
+}
+
+.mac-window-body {
+  background: #ffffff;
+  padding: 0;
+  width: 100%;
+  height: 232px;
+  overflow: hidden;
+  display: block;
+  box-sizing: border-box;
+}
+
+.mac-window-body img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media screen and (max-width: 736px) {
+  #data-windows {
+    padding-top: 2.5em;
+  }
+  .mac-window {
+    width: 260px;
+    flex: 0 0 260px;
+    height: 260px;
+  }
+}
 /* Contact Method */
 .contact-method {
   margin: 0 0 2em 0;
@@ -2686,22 +2815,22 @@ button:disabled,
   position: absolute;
 }
 #header.alt.style1 .logo strong {
-  color: #ff7aa2;
+  color: #74a12e;
 }
 #header.alt.style2 .logo strong {
-  color: #b07d6e;
+  color: #b9dca9;
 }
 #header.alt.style3 .logo strong {
-  color: #e8c4c9;
+  color: #fc9fb1;
 }
 #header.alt.style4 .logo strong {
-  color: #fceef0;
+  color: #fcbacb;
 }
 #header.alt.style5 .logo strong {
-  color: #9e7cb8;
+  color: #ffdabe;
 }
 #header.alt.style6 .logo strong {
-  color: #6bae8c;
+  color: #ffe5c8;
 }
 body.is-preload #header.alt {
   opacity: 0;
@@ -2805,7 +2934,7 @@ body.is-preload #header.alt {
   -ms-transition-delay: 0.75s;
   transition-delay: 0.75s;
   pointer-events: none;
-  background-color: #fdf8f6;
+  background-color: #ffffff;
   content: "";
   display: block;
   height: 100%;
@@ -2873,22 +3002,22 @@ body.is-preload #header.alt {
   opacity: 0.75;
 }
 #banner.style1:after {
-  background-color: #F3D4DA;
+  background-color: #74a12e;
 }
 #banner.style2:after {
-  background-color: #A7B59E;
+  background-color: #b9dca9;
 }
 #banner.style3:after {
-  background-color: #F8D0CD;
+  background-color: #fc9fb1;
 }
 #banner.style4:after {
-  background-color: #799567;
+  background-color: #fcbacb;
 }
 #banner.style5:after {
-  background-color: #F8D0DE;
+  background-color: #ffdabe;
 }
 #banner.style6:after {
-  background-color: #5B744B;
+  background-color: #ffe5c8;
 }
 body.is-preload #banner:after {
   opacity: 1;
@@ -2932,98 +3061,6 @@ body.is-preload #banner > .inner {
     height: auto;
     min-height: 0;
     max-height: none;
-  }
-}
-
-/* Data Mac Windows section on home */
-#data-windows {
-  padding: 4em 0 1em 0;
-}
-#data-windows .inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5em;
-}
-.data-windows-grid {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  gap: 2.5rem;
-  max-width: 100%;
-  overflow: hidden;
-  padding-bottom: 1rem;
-  animation: data-windows-scroll 22s linear infinite;
-}
-.mac-window {
-  background: transparent;
-  border-radius: 14px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
-  overflow: hidden;
-  width: 260px;
-  flex: 0 0 260px;
-}
-.mac-window-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.4rem 0.7rem;
-  background: #f5f5f7;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #6d4a3a;
-}
-.mac-window-dots {
-  display: inline-flex;
-  gap: 0.25rem;
-}
-.mac-window-dots .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-}
-.mac-window-dots .dot-red {
-  background: #ff5f57;
-}
-.mac-window-dots .dot-yellow {
-  background: #febc2e;
-}
-.mac-window-dots .dot-green {
-  background: #28c840;
-}
-.mac-window-title {
-  font-weight: 600;
-}
-.mac-window-body {
-  background: #ffffff;
-  padding: 0;
-}
-.mac-window-body img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-@keyframes data-windows-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-40%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-@media screen and (max-width: 736px) {
-  #data-windows {
-    padding-top: 2.5em;
-  }
-  .mac-window {
-    width: 220px;
   }
 }
 @media screen and (max-width: 480px) {

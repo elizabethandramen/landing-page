@@ -7,6 +7,70 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<link rel="stylesheet" href="../assets/css/nav-submenu.css" />
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<style>
+			.travels-coming-soon { min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+			.travels-coming-soon .bg-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+			.travels-coming-soon .shape { position: absolute; border-radius: 50%; opacity: 0.4; animation: travel-float 8s ease-in-out infinite; }
+			.travels-coming-soon .shape:nth-child(1) { width: 80px; height: 80px; background: linear-gradient(135deg, #b9dca9, #74a12e); top: 15%; left: 10%; animation-delay: 0s; }
+			.travels-coming-soon .shape:nth-child(2) { width: 60px; height: 60px; background: linear-gradient(135deg, #fcbacb, #ff7aa2); top: 25%; right: 15%; animation-delay: -2s; animation-duration: 10s; }
+			.travels-coming-soon .shape:nth-child(3) { width: 100px; height: 100px; background: linear-gradient(135deg, #ffe5c8, #ffdabe); bottom: 20%; left: 20%; animation-delay: -4s; animation-duration: 12s; }
+			.travels-coming-soon .shape:nth-child(4) { width: 50px; height: 50px; background: linear-gradient(135deg, #e8a8b0, #fc9fb1); bottom: 30%; right: 25%; animation-delay: -1s; animation-duration: 9s; }
+			.travels-coming-soon .shape:nth-child(5) { width: 70px; height: 70px; background: linear-gradient(135deg, #f0e6d3, #e8c4c9); top: 50%; left: 5%; animation-delay: -3s; animation-duration: 11s; }
+			@keyframes travel-float {
+				0%, 100% { transform: translate(0, 0) rotate(0deg); }
+				25% { transform: translate(15px, -20px) rotate(5deg); }
+				50% { transform: translate(-10px, 10px) rotate(-5deg); }
+				75% { transform: translate(20px, 15px) rotate(3deg); }
+			}
+			.travels-coming-soon .content { position: relative; z-index: 1; text-align: center; padding: 2em; }
+			.travels-coming-soon h1 { font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 0.5em; }
+			.travels-coming-soon .letters { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0.05em; }
+			.travels-coming-soon .letters span { display: inline-block; opacity: 0; animation: travel-letter-pop 0.5s ease-out forwards; }
+			.travels-coming-soon .letters span:nth-child(1) { animation-delay: 0.1s; }
+			.travels-coming-soon .letters span:nth-child(2) { animation-delay: 0.15s; }
+			.travels-coming-soon .letters span:nth-child(3) { animation-delay: 0.2s; }
+			.travels-coming-soon .letters span:nth-child(4) { animation-delay: 0.25s; }
+			.travels-coming-soon .letters span:nth-child(5) { animation-delay: 0.3s; }
+			.travels-coming-soon .letters span:nth-child(6) { animation-delay: 0.35s; }
+			.travels-coming-soon .letters span:nth-child(7) { animation-delay: 0.4s; }
+			.travels-coming-soon .letters span:nth-child(8) { animation-delay: 0.45s; }
+			.travels-coming-soon .letters span:nth-child(9) { animation-delay: 0.5s; }
+			.travels-coming-soon .letters span:nth-child(10) { animation-delay: 0.55s; }
+			.travels-coming-soon .letters span:nth-child(11) { animation-delay: 0.6s; }
+			.travels-coming-soon .letters span:nth-child(12) { animation-delay: 0.65s; }
+			@keyframes travel-letter-pop {
+				0% { opacity: 0; transform: translateY(-20px) scale(0.8); }
+				60% { opacity: 1; transform: translateY(5px) scale(1.05); }
+				100% { opacity: 1; transform: translateY(0) scale(1); }
+			}
+			.travels-coming-soon .tagline { font-size: 1.2rem; color: rgba(140,91,74,0.7); margin: 1em 0; animation: travel-fade-up 0.8s ease-out 0.8s both; }
+			@keyframes travel-fade-up {
+				from { opacity: 0; transform: translateY(15px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+			.travels-coming-soon .emoji-row { display: flex; justify-content: center; gap: 0.8em; margin: 1.5em 0; flex-wrap: wrap; animation: travel-fade-up 0.8s ease-out 1s both; }
+			.travels-coming-soon .emoji-row span { font-size: 2rem; animation: travel-bounce 2s ease-in-out infinite; }
+			.travels-coming-soon .emoji-row span:nth-child(1) { animation-delay: 0s; }
+			.travels-coming-soon .emoji-row span:nth-child(2) { animation-delay: 0.15s; }
+			.travels-coming-soon .emoji-row span:nth-child(3) { animation-delay: 0.3s; }
+			.travels-coming-soon .emoji-row span:nth-child(4) { animation-delay: 0.45s; }
+			.travels-coming-soon .emoji-row span:nth-child(5) { animation-delay: 0.6s; }
+			@keyframes travel-bounce {
+				0%, 100% { transform: translateY(0); }
+				50% { transform: translateY(-12px); }
+			}
+			.travels-coming-soon .progress-bar { width: 100%; max-width: 280px; height: 10px; background: rgba(232,196,201,0.4); border-radius: 999px; overflow: hidden; margin: 2em auto; position: relative; animation: travel-fade-up 0.8s ease-out 1.2s both; }
+			.travels-coming-soon .progress-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #74a12e 0%, #fcbacb 50%, #74a12e 100%); background-size: 200% 100%; border-radius: 999px; animation: travel-shimmer 2.5s linear infinite; }
+			@keyframes travel-shimmer {
+				0% { background-position: 200% 0; }
+				100% { background-position: -200% 0; }
+			}
+			.travels-coming-soon .hint { font-size: 0.9rem; color: rgba(140,91,74,0.5); margin-top: 1em; animation: travel-pulse 3s ease-in-out infinite; animation-delay: 1.5s; }
+			@keyframes travel-pulse {
+				0%, 100% { opacity: 0.6; }
+				50% { opacity: 1; }
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 		<div id="wrapper">
@@ -27,7 +91,6 @@
 							<li><a href="../docs/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
 							<li><a href="landing.html">Projects</a></li>
 							<li><a href="generic.html">Experiences</a></li>
-							<li><a href="accomplishments.html">Accomplishments</a></li>
 						</ul>
 					</li>
 					<li><a href="playground.html">Playground</a></li>
@@ -45,10 +108,25 @@
 				<ul class="actions stacked"></ul>
 			</nav>
 			<div id="main" class="alt">
-				<section id="one">
-					<div class="inner">
-						<header class="major"><h1>Travels ✈️</h1></header>
-						<p class="travels-placeholder">Memories soon to come...</p>
+				<section id="one" class="travels-coming-soon">
+					<div class="bg-shapes" aria-hidden="true">
+						<div class="shape"></div>
+						<div class="shape"></div>
+						<div class="shape"></div>
+						<div class="shape"></div>
+						<div class="shape"></div>
+					</div>
+					<div class="content inner">
+						<h1>Travels ✈️</h1>
+						<div class="letters"><span>C</span><span>o</span><span>m</span><span>i</span><span>n</span><span>g</span><span> </span><span>S</span><span>o</span><span>o</span><span>n</span></div>
+						<p class="tagline">Packing the passport vibes—adventures & memories landing soon! 🌍</p>
+						<div class="emoji-row">
+							<span>✈️</span><span>🌍</span><span>📸</span><span>🗺️</span><span>🌸</span>
+						</div>
+						<div class="progress-bar">
+							<div class="progress-fill"></div>
+						</div>
+						<p class="hint">The suitcase is getting cozy—adventure mode loading ✨</p>
 					</div>
 				</section>
 			</div>

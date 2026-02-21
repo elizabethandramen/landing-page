@@ -1,0 +1,143 @@
+// MacBook-style photo windows - ping-pong scroll
+
+#data-windows {
+  padding: 4em 0 1em 0;
+  overflow: hidden;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+#data-windows .inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5em;
+  background: transparent !important;
+}
+
+.data-windows-scroll-wrap {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%;
+  padding: 1.5rem 0;
+  cursor: grab;
+  user-select: none;
+  background: transparent !important;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.data-windows-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2.5rem;
+  width: max-content;
+  padding: 0 2.5rem;
+  will-change: transform;
+  flex-shrink: 0;
+  animation: data-windows-pingpong 55s linear infinite alternate;
+}
+
+.data-windows-scroll-wrap:hover .data-windows-grid {
+  animation-play-state: paused;
+}
+
+@keyframes data-windows-pingpong {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-66.666%, 0, 0); }
+}
+
+
+.mac-window {
+  background: transparent;
+  border-radius: 14px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 260px;
+  flex: 0 0 260px;
+  height: 260px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mac-window:hover {
+  transform: scale(1.08) translateY(-8px);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.15);
+}
+
+.mac-window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.7rem;
+  background: #f5f5f7;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6d4a3a;
+  height: 28px;
+  min-height: 28px;
+  flex-shrink: 0;
+}
+
+.mac-window-dots {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.mac-window-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.mac-window-dots .dot-red {
+  background: #ff5f57;
+}
+
+.mac-window-dots .dot-yellow {
+  background: #febc2e;
+}
+
+.mac-window-dots .dot-green {
+  background: #28c840;
+}
+
+.mac-window-title {
+  font-weight: 600;
+}
+
+.mac-window-body {
+  background: #ffffff;
+  padding: 0;
+  width: 100%;
+  height: 232px;
+  overflow: hidden;
+  display: block;
+  box-sizing: border-box;
+}
+
+.mac-window-body img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media screen and (max-width: 736px) {
+  #data-windows {
+    padding-top: 2.5em;
+  }
+
+  .mac-window {
+    width: 260px;
+    flex: 0 0 260px;
+    height: 260px;
+  }
+}

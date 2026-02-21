@@ -145,6 +145,14 @@
         background-color: _palette(accent6);
       }
     }
+
+    /* UNC & NCSSM */
+    &.tile-unc:before {
+      background-color: #6b8f7a;
+    }
+    &.tile-ncssm:before {
+      background-color: #fcbacb;
+    }
   }
 
   @include breakpoint("<=large") {

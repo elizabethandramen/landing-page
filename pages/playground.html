@@ -7,6 +7,53 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<link rel="stylesheet" href="../assets/css/nav-submenu.css" />
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<style>
+			.playground-coming-soon { min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+			.playground-coming-soon .bg-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+			.playground-coming-soon .shape { position: absolute; border-radius: 50%; opacity: 0.4; animation: float 8s ease-in-out infinite; }
+			.playground-coming-soon .shape:nth-child(1) { width: 80px; height: 80px; background: linear-gradient(135deg, #b9dca9, #74a12e); top: 15%; left: 10%; animation-delay: 0s; }
+			.playground-coming-soon .shape:nth-child(2) { width: 60px; height: 60px; background: linear-gradient(135deg, #fcbacb, #ff7aa2); top: 25%; right: 15%; animation-delay: -2s; animation-duration: 10s; }
+			.playground-coming-soon .shape:nth-child(3) { width: 100px; height: 100px; background: linear-gradient(135deg, #ffe5c8, #ffdabe); bottom: 20%; left: 20%; animation-delay: -4s; animation-duration: 12s; }
+			.playground-coming-soon .shape:nth-child(4) { width: 50px; height: 50px; background: linear-gradient(135deg, #e8a8b0, #fc9fb1); bottom: 30%; right: 25%; animation-delay: -1s; animation-duration: 9s; }
+			.playground-coming-soon .shape:nth-child(5) { width: 70px; height: 70px; background: linear-gradient(135deg, #f0e6d3, #e8c4c9); top: 50%; left: 5%; animation-delay: -3s; animation-duration: 11s; }
+			@keyframes float {
+				0%, 100% { transform: translate(0, 0) rotate(0deg); }
+				25% { transform: translate(15px, -20px) rotate(5deg); }
+				50% { transform: translate(-10px, 10px) rotate(-5deg); }
+				75% { transform: translate(20px, 15px) rotate(3deg); }
+			}
+			.playground-coming-soon .content { position: relative; z-index: 1; text-align: center; padding: 2em; }
+			.playground-coming-soon h1 { font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 0.5em; }
+			.playground-coming-soon h1::after { display: none !important; }
+			.playground-coming-soon .coming-soon-text { font-size: 1.5rem; font-weight: 600; color: inherit; margin: 0.25em 0; animation: fade-up 0.8s ease-out 0.3s both; }
+			.playground-coming-soon .tagline { font-size: 1.2rem; color: var(--fg-light, rgba(140,91,74,0.7)); margin: 1em 0; animation: fade-up 0.8s ease-out 0.8s both; }
+			@keyframes fade-up {
+				from { opacity: 0; transform: translateY(15px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+			.playground-coming-soon .emoji-row { display: flex; justify-content: center; gap: 0.8em; margin: 1.5em 0; flex-wrap: wrap; animation: fade-up 0.8s ease-out 1s both; }
+			.playground-coming-soon .emoji-row span { font-size: 2rem; animation: bounce 2s ease-in-out infinite; }
+			.playground-coming-soon .emoji-row span:nth-child(1) { animation-delay: 0s; }
+			.playground-coming-soon .emoji-row span:nth-child(2) { animation-delay: 0.15s; }
+			.playground-coming-soon .emoji-row span:nth-child(3) { animation-delay: 0.3s; }
+			.playground-coming-soon .emoji-row span:nth-child(4) { animation-delay: 0.45s; }
+			.playground-coming-soon .emoji-row span:nth-child(5) { animation-delay: 0.6s; }
+			@keyframes bounce {
+				0%, 100% { transform: translateY(0); }
+				50% { transform: translateY(-12px); }
+			}
+			.playground-coming-soon .progress-bar { width: 100%; max-width: 280px; height: 10px; background: rgba(232,196,201,0.4); border-radius: 999px; overflow: hidden; margin: 2em auto; position: relative; animation: fade-up 0.8s ease-out 1.2s both; }
+			.playground-coming-soon .progress-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #74a12e 0%, #fcbacb 50%, #74a12e 100%); background-size: 200% 100%; border-radius: 999px; animation: progress-shimmer 2.5s linear infinite; }
+			@keyframes progress-shimmer {
+				0% { background-position: 200% 0; }
+				100% { background-position: -200% 0; }
+			}
+			.playground-coming-soon .hint { font-size: 0.9rem; color: var(--fg-light, rgba(140,91,74,0.5)); margin-top: 1em; animation: pulse 3s ease-in-out infinite; animation-delay: 1.5s; }
+			@keyframes pulse {
+				0%, 100% { opacity: 0.6; }
+				50% { opacity: 1; }
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 		<div id="wrapper">
@@ -27,7 +74,6 @@
 							<li><a href="../docs/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
 							<li><a href="landing.html">Projects</a></li>
 							<li><a href="generic.html">Experiences</a></li>
-							<li><a href="accomplishments.html">Accomplishments</a></li>
 						</ul>
 					</li>
 					<li><a href="playground.html">Playground</a></li>
@@ -45,10 +91,25 @@
 				<ul class="actions stacked"></ul>
 			</nav>
 			<div id="main" class="alt">
-				<section id="one">
-					<div class="inner">
-						<header class="major"><h1>Playground 🎮</h1></header>
-						<p>Coding projects of the day and a maze of projects—your creative coding playground will go here. Add links to your repos, demos, and experiments!</p>
+				<section id="one" class="playground-coming-soon">
+					<div class="bg-shapes" aria-hidden="true">
+						<div class="shape"></div>
+						<div class="shape"></div>
+						<div class="shape"></div>
+						<div class="shape"></div>
+						<div class="shape"></div>
+					</div>
+					<div class="content inner">
+						<h1>Playground 🎮</h1>
+						<p class="coming-soon-text">Coming Soon</p>
+						<p class="tagline">Dusting off the creative chaos—repos, demos & experiments incoming! 🎪</p>
+						<div class="emoji-row">
+							<span>🚀</span><span>✨</span><span>🎯</span><span>💻</span><span>🌸</span>
+						</div>
+						<div class="progress-bar">
+							<div class="progress-fill"></div>
+						</div>
+						<p class="hint">The sandbox is getting a glow-up—come play soon ✨</p>
 					</div>
 				</section>
 			</div>

@@ -99,9 +99,175 @@
 				min-height: 2.5em;
 			}
 		}
+		@media (max-width: 980px) {
+			#banner .content > p.typing-line {
+				white-space: normal;
+				overflow-x: visible;
+				overflow-wrap: break-word;
+				word-wrap: break-word;
+				max-width: 100%;
+			}
+		}
+
+		/* Mac windows: transparent background */
+		#data-windows,
+		#data-windows .inner,
+		.data-windows-scroll-wrap {
+			background: transparent !important;
+			background-color: transparent !important;
+		}
+
+		/* Strawberry matcha loading screen - pour from top, welcome, drain out bottom */
+		body.loading #wrapper {
+			visibility: hidden;
+			opacity: 0;
+			transition: opacity 0.6s ease, visibility 0.6s;
+		}
+		body:not(.loading) #wrapper {
+			visibility: visible;
+			opacity: 1;
+		}
+		#loading-screen {
+			position: fixed;
+			inset: 0;
+			z-index: 99999;
+			pointer-events: auto;
+			overflow: hidden;
+			background: #fdf8f6;
+		}
+		#loading-screen .loading-bg {
+			position: absolute;
+			inset: 0;
+			background: transparent;
+		}
+		#loading-screen.loaded {
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			transition: opacity 0.6s ease, visibility 0.6s;
+		}
+		/* Liquid pours in from top */
+		#loading-screen .water-fill {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 0;
+			background: linear-gradient(to bottom, rgba(116, 161, 46, 0.85) 0%, rgba(183, 211, 165, 0.95) 20%, #e8f0df 45%, #ffe5e0 70%, #fcbacb 100%);
+			transform-origin: top;
+			transition: height 2.2s ease-out;
+			z-index: 1;
+			overflow: visible;
+		}
+		/* Wavy water surface at top */
+		#loading-screen .water-fill::before {
+			content: '';
+			position: absolute;
+			top: -8px;
+			left: -5%;
+			width: 110%;
+			height: 20px;
+			background: linear-gradient(to right, rgba(116, 161, 46, 0.9), rgba(183, 211, 165, 0.95));
+			border-radius: 50% 50% 45% 55% / 60% 60% 40% 40%;
+			animation: water-wave 4s ease-in-out infinite;
+			box-shadow: 0 -2px 8px rgba(183, 211, 165, 0.35);
+		}
+		@keyframes water-wave {
+			0%, 100% { transform: translateX(0) translateY(0); }
+			25% { transform: translateX(3px) translateY(-2px); }
+			50% { transform: translateX(-2px) translateY(1px); }
+			75% { transform: translateX(2px) translateY(-1px); }
+		}
+		#loading-screen.pour .water-fill {
+			height: 100%;
+		}
+		/* Pour stream - bookmark style in top-right corner */
+		#loading-screen .pour-stream {
+			position: absolute;
+			top: 0;
+			right: 15px;
+			left: auto;
+			width: 60px;
+			height: 0;
+			background: linear-gradient(to bottom, #fcbacb, #e8f0df);
+			border-radius: 0 0 0 30px;
+			opacity: 0;
+			transition: height 1.2s ease-out, opacity 0.4s;
+			z-index: 2;
+			transform-origin: top right;
+		}
+		#loading-screen.pour .pour-stream {
+			height: 120px;
+			opacity: 0.95;
+		}
+		/* Splashes during pour */
+		#loading-screen .splash {
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			background: rgba(252, 186, 203, 0.8);
+			opacity: 0;
+			pointer-events: none;
+		}
+		#loading-screen.pour .splash.s1 { left: 35%; top: 18%; animation: splash-down 0.6s ease-out 0.4s forwards; }
+		#loading-screen.pour .splash.s2 { left: 52%; top: 22%; animation: splash-down 0.5s ease-out 0.6s forwards; }
+		#loading-screen.pour .splash.s3 { left: 68%; top: 15%; animation: splash-down 0.55s ease-out 0.5s forwards; }
+		#loading-screen.pour .splash.s4 { left: 42%; top: 25%; animation: splash-down 0.5s ease-out 0.7s forwards; }
+		#loading-screen.pour .splash.s5 { left: 58%; top: 20%; animation: splash-down 0.6s ease-out 0.55s forwards; }
+		@keyframes splash-down {
+			0% { opacity: 0; transform: translateY(-10px) scale(0.2); }
+			40% { opacity: 0.9; transform: translateY(8px) scale(0.9); }
+			100% { opacity: 0; transform: translateY(25px) scale(0.3); }
+		}
+		/* Welcome message - shows after pour */
+		#loading-screen .welcome-msg {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			font-family: 'Gaegu', 'Outfit', cursive, sans-serif;
+			font-size: 1.8em;
+			font-weight: 600;
+			color: #6d4a3a;
+			letter-spacing: 0.05em;
+			opacity: 0;
+			z-index: 2;
+			text-align: center;
+			text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+			transition: opacity 0.5s ease;
+			pointer-events: none;
+		}
+		#loading-screen.show-welcome .welcome-msg {
+			opacity: 1;
+		}
+		/* Drain phase - liquid exits toward bottom */
+		#loading-screen.drain .water-fill {
+			height: 0 !important;
+			top: auto !important;
+			bottom: 0 !important;
+			transition: height 1.2s ease-in;
+		}
+		#loading-screen.drain .welcome-msg {
+			opacity: 0;
+			transition: opacity 0.4s ease;
+		}
 		</style>
 	</head>
-	<body class="is-preload">
+	<body class="is-preload loading">
+
+		<!-- Loading screen - pour from top, welcome, drain out bottom -->
+		<div id="loading-screen">
+			<div class="loading-bg"></div>
+			<div class="pour-stream"></div>
+			<div class="water-fill"></div>
+			<div class="splash s1"></div>
+			<div class="splash s2"></div>
+			<div class="splash s3"></div>
+			<div class="splash s4"></div>
+			<div class="splash s5"></div>
+			<div class="welcome-msg">Welcome to Elizabeth's Environment :)</div>
+		</div>
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -128,7 +294,6 @@
 									<li><a href="docs/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
 									<li><a href="pages/landing.html">Projects</a></li>
 									<li><a href="pages/generic.html">Experiences</a></li>
-									<li><a href="pages/accomplishments.html">Accomplishments</a></li>
 								</ul>
 							</li>
 							<li><a href="pages/playground.html">Playground</a></li>
@@ -267,46 +432,136 @@
 				<!-- Data Mac Windows -->
 					<section id="data-windows">
 						<div class="inner">
-							<div class="data-windows-grid">
-								<div class="mac-window mac-window-left">
-									<div class="mac-window-header">
-										<div class="mac-window-dots">
-											<span class="dot dot-red"></span>
-											<span class="dot dot-yellow"></span>
-											<span class="dot dot-green"></span>
+							<div class="data-windows-scroll-wrap">
+								<div class="data-windows-grid">
+									<!-- Set 1 -->
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">CREATIVITY</span>
 										</div>
-										<span class="mac-window-title">CREATIVITY</span>
+										<div class="mac-window-body"><img src="images/me/IMG_8937.JPG" alt="Creativity preview" /></div>
 									</div>
-									<div class="mac-window-body">
-										<img src="images/backgrounds/pic01.jpg" alt="Creativity preview" />
-									</div>
-								</div>
-
-								<div class="mac-window mac-window-bottom">
-									<div class="mac-window-header">
-										<div class="mac-window-dots">
-											<span class="dot dot-red"></span>
-											<span class="dot dot-yellow"></span>
-											<span class="dot dot-green"></span>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">INVENTOR</span>
 										</div>
-										<span class="mac-window-title">INVENTOR</span>
+										<div class="mac-window-body"><img src="images/me/IMG_1779 copy.jpg" alt="Inventor preview" /></div>
 									</div>
-									<div class="mac-window-body">
-										<img src="images/backgrounds/pic02.jpg" alt="Inventor preview" />
-									</div>
-								</div>
-
-								<div class="mac-window mac-window-right">
-									<div class="mac-window-header">
-										<div class="mac-window-dots">
-											<span class="dot dot-red"></span>
-											<span class="dot dot-yellow"></span>
-											<span class="dot dot-green"></span>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">RESOURCEFUL</span>
 										</div>
-										<span class="mac-window-title">RESOURCEFUL</span>
+										<div class="mac-window-body"><img src="images/me/IMG_1447.JPG" alt="Resourceful preview" /></div>
 									</div>
-									<div class="mac-window-body">
-										<img src="images/backgrounds/pic03.jpg" alt="Resourceful preview" />
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">CREATIVITY</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_1527.JPG" alt="Creativity preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">INVENTOR</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_1961.JPG" alt="Inventor preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">RESOURCEFUL</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_8933.JPG" alt="Resourceful preview" /></div>
+									</div>
+									<!-- Set 2 & 3 - duplicates for seamless infinite loop (3 copies = smooth, no visible restart) -->
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">CREATIVITY</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_8937.JPG" alt="Creativity preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">INVENTOR</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_1779 copy.jpg" alt="Inventor preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">RESOURCEFUL</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_1447.JPG" alt="Resourceful preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">CREATIVITY</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_1527.JPG" alt="Creativity preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">INVENTOR</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_1961.JPG" alt="Inventor preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">RESOURCEFUL</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_8933.JPG" alt="Resourceful preview" /></div>
+									</div>
+									<!-- Third copy -->
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">CREATIVITY</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_8937.JPG" alt="Creativity preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">INVENTOR</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_1779 copy.jpg" alt="Inventor preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">RESOURCEFUL</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_1447.JPG" alt="Resourceful preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">CREATIVITY</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_1527.JPG" alt="Creativity preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">INVENTOR</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_1961.JPG" alt="Inventor preview" /></div>
+									</div>
+									<div class="mac-window">
+										<div class="mac-window-header">
+											<div class="mac-window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+											<span class="mac-window-title">RESOURCEFUL</span>
+										</div>
+										<div class="mac-window-body"><img src="images/me/IMG_8933.JPG" alt="Resourceful preview" /></div>
 									</div>
 								</div>
 							</div>

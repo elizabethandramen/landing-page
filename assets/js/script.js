@@ -44,3 +44,25 @@ function typeText() {
 }
 
 document.addEventListener("DOMContentLoaded", typeText);
+
+// Loading screen: matcha pour on every homepage load (including refresh)
+document.addEventListener("DOMContentLoaded", function() {
+  const loadingScreen = document.getElementById("loading-screen");
+  const body = document.body;
+  if (!loadingScreen) return;
+
+  loadingScreen.classList.add("pour");
+
+  setTimeout(function() {
+    loadingScreen.classList.add("show-welcome");
+  }, 2200);
+
+  setTimeout(function() {
+    loadingScreen.classList.add("drain");
+  }, 3800);
+
+  setTimeout(function() {
+    loadingScreen.classList.add("loaded");
+    body.classList.remove("loading");
+  }, 5200);
+});

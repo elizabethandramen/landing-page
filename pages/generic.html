@@ -12,8 +12,94 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<link rel="stylesheet" href="../assets/css/nav-submenu.css" />
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<style>
+			/* Experiences – bento journey layout */
+			body.exp-generic, body.exp-generic #wrapper { background: #fdf8f6 !important; }
+			.exp-page { background: #fdf8f6; }
+			.exp-hero {
+				text-align: center; padding: 3em 1.5em 2em; position: relative; overflow: hidden;
+			}
+			.exp-hero .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+			.exp-hero .hero-bg .dot { position: absolute; width: 6px; height: 6px; background: #e8c4c9; border-radius: 50%; opacity: 0.6; animation: exp-dot-pulse 4s ease-in-out infinite; }
+			.exp-hero .hero-bg .dot:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+			.exp-hero .hero-bg .dot:nth-child(2) { top: 25%; right: 12%; animation-delay: 0.5s; }
+			.exp-hero .hero-bg .dot:nth-child(3) { bottom: 30%; left: 8%; animation-delay: 1s; }
+			.exp-hero .hero-bg .dot:nth-child(4) { bottom: 20%; right: 15%; animation-delay: 1.5s; }
+			@keyframes exp-dot-pulse { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.2); } }
+			.exp-hero h1 { margin-bottom: 0.3em; color: #6d4a3a; }
+			.exp-hero .tagline { color: rgba(140,91,74,0.7); font-size: 1.1rem; }
+			.exp-bento {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 1.25rem;
+				padding: 0 1.5em 3em;
+				max-width: 65em;
+				margin: 0 auto;
+			}
+			.exp-card {
+				background: #fff;
+				border-radius: 16px;
+				padding: 1.5rem;
+				box-shadow: 0 4px 20px rgba(140,91,74,0.08);
+				border: 1px solid rgba(232,196,201,0.5);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				animation: exp-card-in 0.6s ease-out backwards;
+				position: relative;
+				overflow: hidden;
+			}
+			.exp-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				border-radius: 16px 16px 0 0;
+			}
+			.exp-card:nth-child(1) { grid-column: span 1; animation-delay: 0.05s; }
+			.exp-card:nth-child(1)::before { background: linear-gradient(90deg, #74a12e, #b9dca9); }
+			.exp-card:nth-child(2) { grid-column: span 1; animation-delay: 0.1s; }
+			.exp-card:nth-child(2)::before { background: linear-gradient(90deg, #fcbacb, #ff7aa2); }
+			.exp-card:nth-child(3) { grid-column: span 1; animation-delay: 0.15s; }
+			.exp-card:nth-child(3)::before { background: linear-gradient(90deg, #74a12e, #b9dca9); }
+			.exp-card:nth-child(4) { grid-column: span 1; animation-delay: 0.2s; }
+			.exp-card:nth-child(4)::before { background: linear-gradient(90deg, #fcbacb, #e8a8b0); }
+			.exp-card:nth-child(5) { grid-column: span 1; animation-delay: 0.25s; }
+			.exp-card:nth-child(5)::before { background: linear-gradient(90deg, #74a12e, #b9dca9); }
+			.exp-card:nth-child(6) { grid-column: span 1; animation-delay: 0.3s; }
+			.exp-card:nth-child(6)::before { background: linear-gradient(90deg, #ffdabe, #ffe5c8); }
+			.exp-card:nth-child(7) { grid-column: span 1; animation-delay: 0.35s; }
+			.exp-card:nth-child(7)::before { background: linear-gradient(90deg, #74a12e, #b9dca9); }
+			.exp-card:nth-child(8) { grid-column: span 1; animation-delay: 0.4s; }
+			.exp-card:nth-child(8)::before { background: linear-gradient(90deg, #fcbacb, #fc9fb1); }
+			.exp-card:nth-child(n+9):not(.exp-card-cta)::before { background: linear-gradient(90deg, #74a12e, #b9dca9); }
+			.exp-card:nth-child(4n+10):not(.exp-card-cta)::before { background: linear-gradient(90deg, #fcbacb, #ff7aa2); }
+			.exp-card:nth-child(4n+11):not(.exp-card-cta)::before { background: linear-gradient(90deg, #ffdabe, #ffe5c8); }
+			.exp-card:nth-child(4n+12):not(.exp-card-cta)::before { background: linear-gradient(90deg, #e8a8b0, #fc9fb1); }
+			.exp-card:nth-child(n+9) { animation-delay: 0.45s; }
+			.exp-card-cta { background: linear-gradient(135deg, #fff5f5 0%, #fdf8f6 100%); }
+			.exp-card:hover {
+				transform: translateY(-6px);
+				box-shadow: 0 12px 36px rgba(140,91,74,0.14);
+			}
+			@keyframes exp-card-in {
+				from { opacity: 0; transform: translateY(24px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+			.exp-card .icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+			.exp-card .role { font-weight: 600; color: #6d4a3a; font-size: 1.1rem; margin-bottom: 0.25rem; }
+			.exp-card .org { color: rgba(140,91,74,0.8); font-size: 0.95rem; margin-bottom: 0.6rem; }
+			.exp-card .desc { color: #8c5b4a; font-size: 0.9rem; line-height: 1.55; }
+			@media (min-width: 900px) {
+				.exp-bento { grid-template-columns: repeat(2, 1fr); }
+				.exp-card:nth-child(1) { grid-column: span 2; }
+			}
+			@media (max-width: 600px) {
+				.exp-bento { padding: 0 1em 2em; }
+			}
+		</style>
 	</head>
-	<body class="is-preload">
+	<body class="is-preload exp-generic">
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -40,7 +126,6 @@
 									<li><a href="../docs/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
 									<li><a href="landing.html">Projects</a></li>
 									<li><a href="generic.html">Experiences</a></li>
-									<li><a href="accomplishments.html">Accomplishments</a></li>
 								</ul>
 							</li>
 							<li><a href="playground.html">Playground</a></li>
@@ -59,20 +144,154 @@
 					</nav>
 
 				<!-- Main -->
-					<div id="main" class="alt">
+					<div id="main" class="alt exp-page">
 
-						<!-- One -->
-							<section id="one">
-								<div class="inner">
-									<header class="major">
-										<h1>Experiences 💡</h1>
-									</header>
-									<span class="image main"><img src="../images/backgrounds/pic01.jpg" alt="" /></span>
-									<p>Currently, I am the Technical Director of the Asian American Studies Collaborative, which is a collaborative focused on advocating for Asian American Studies in universities. In my position, I focus on maintaining current technical resources and developing data visualization and models to highlight the current state of Asian American Studies. In addition, I am a social media intern for Overachiever Magazine and in this position, I created a series called "Decoding the Definition of STEM" that discusses the various intersections of STEM with other fields while emphasizing the accomplishments of Asian American Women.</p>
-									<p>As of right now, I am a SWE Fellow for Headstarter AI and completing 2 externships for Webacy.</p>
-									<p>Not only do I have positions combining technology with different fields, but I also have technical experiences such as competing in the FidHacks Hackathon at Fidelity Investments, Underwater Robotics Competitions, and being a computer science student researcher for the Summer Research and Innovation Program at the North Carolina School of Science and Mathematics</p>
-								</div>
-							</section>
+						<section class="exp-hero">
+							<div class="hero-bg" aria-hidden="true">
+								<span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+							</div>
+							<div class="inner">
+								<header class="major">
+									<h1>Experiences 💡</h1>
+								</header>
+								<p class="tagline">Where tech meets advocacy, research, and creativity</p>
+							</div>
+						</section>
+
+						<div class="exp-bento">
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🤖</span>
+								<h3 class="role">Machine Learning Intern</h3>
+								<p class="org">DS IT Systems</p>
+								<p class="desc">Worked on a prototype for detecting FAA drone airspace violations. Trained and evaluated computer vision models using YOLOv8, explored feature engineering to improve performance, and built dashboards with Streamlit and Flask to visualize results. This experience showed me how AI systems move from experimentation into tools people can actually use.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">💻</span>
+								<h3 class="role">AI / Tech Intern</h3>
+								<p class="org">Tech Me Kid</p>
+								<p class="desc">Built the frontend for the TMK Event Locator platform, helping users find and filter events. Focused on translating ideas into interactive UI components with usability and accessibility in mind, especially for younger learners. Strengthened my confidence turning product concepts into real interfaces.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">✨</span>
+								<h3 class="role">AI Trainer</h3>
+								<p class="org">Outlier AI</p>
+								<p class="desc">Evaluated model responses and helped improve output quality by analyzing reasoning, clarity, and alignment with user intent. Working closely with AI behavior gave me a deeper understanding of how language models interpret prompts and where they succeed or struggle.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">📊</span>
+								<h3 class="role">Technical Director</h3>
+								<p class="org">Asian American Studies Collaborative (AASC)</p>
+								<p class="desc">Help guide the technical direction of projects that support Asian American academic and community initiatives. Work closely with design and development contributors to improve digital platforms and make resources easier to access. Combines technical work with community impact and storytelling.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">✍️</span>
+								<h3 class="role">Software Engineer</h3>
+								<p class="org">Dear Asian Youth (DAY)</p>
+								<p class="desc">Support platforms that promote civic engagement and community storytelling. Focus on implementing features and improving user experiences that amplify voices and make advocacy resources more accessible online. Technology as a tool for connection and representation.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🌐</span>
+								<h3 class="role">Lemkin Project Team Member</h3>
+								<p class="org">UNC CS for Social Good</p>
+								<p class="desc">Contributed to the Organization page of the Lemkin platform. Implemented React and TypeScript components and built filtering functionality based on existing designs while collaborating across engineering and design. Grew comfortable building features for real-world users and organizations.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🎓</span>
+								<h3 class="role">WECode Tech Fellow</h3>
+								<p class="org">Harvard WECode</p>
+								<p class="desc">Connect students in my communities to opportunities in technology, especially those who may feel unsure about entering tech spaces. Share resources, promote events, and encourage participation—helping peers see they belong in these environments.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🚀</span>
+								<h3 class="role">Software Engineering Fellow</h3>
+								<p class="org">Headstarter AI</p>
+								<p class="desc">Worked on fast-paced engineering projects that emphasized building and shipping ideas quickly. Focused on practical development skills, collaboration, and turning concepts into working products. Became more comfortable experimenting, iterating, and learning through building.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">📱</span>
+								<h3 class="role">AR Development & Digital Storytelling Extern</h3>
+								<p class="org">Snapchat</p>
+								<p class="desc">Explored augmented reality development and digital storytelling. Learned how immersive technology shapes how people interact with digital spaces. Introduced me to AR workflows and expanded my interest in creative technology and interactive experiences.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🔗</span>
+								<h3 class="role">Web3 Security & Data Analytics Extern</h3>
+								<p class="org">Webacy</p>
+								<p class="desc">Gained exposure to Web3 security and blockchain analytics, learning how risk and data analysis play a role in decentralized systems. Broadened my perspective on emerging technologies and the importance of building systems users can trust.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🏛️</span>
+								<h3 class="role">Student Technology Council Member</h3>
+								<p class="org">UNC Chapel Hill</p>
+								<p class="desc">Represent student perspectives in conversations about campus technology. Provide feedback on digital tools and advocate for improvements that make systems more accessible and usable for the broader student community.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🎨</span>
+								<h3 class="role">UI/UX Apprentice</h3>
+								<p class="org">App Team Carolina</p>
+								<p class="desc">Worked on multiple product design projects involving onboarding flows, dashboards, and personalized user experiences. Learned how to translate user needs into structured designs while collaborating with developers and iterating based on feedback.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🐷</span>
+								<h3 class="role">Tech Team Member</h3>
+								<p class="org">Pearl Hacks</p>
+								<p class="desc">Supported website development for one of the largest women-focused hackathons in the region. Working on a platform used by hundreds of attendees showed me how collaborative engineering directly supports community-building events.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">💬</span>
+								<h3 class="role">Student Engagement Ambassador</h3>
+								<p class="org">UNC Chapel Hill & RNL</p>
+								<p class="desc">Work directly with students to help them navigate campus opportunities and feel more connected to university communities. Supporting onboarding and engagement initiatives strengthened my communication skills and reinforced my interest in creating welcoming environments.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">📚</span>
+								<h3 class="role">Pandemic Tutor</h3>
+								<p class="org">River Mill Academy</p>
+								<p class="desc">Supported students adjusting to remote learning by helping them stay on track academically during a difficult transition. Taught me patience, adaptability, and how important accessible education is during times of change.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🥋</span>
+								<h3 class="role">Volunteer</h3>
+								<p class="org">Mideastern Karate Association</p>
+								<p class="desc">Assisted with youth programs and community activities, helping create structured and supportive learning environments for younger students.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">💼</span>
+								<h3 class="role">Deloitte Launchpad Participant</h3>
+								<p class="org">Deloitte</p>
+								<p class="desc">Participated in professional development programming focused on technology, consulting, and problem-solving in large organizations. Gave me insight into how technical solutions connect with business strategy and real-world impact.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">✍️</span>
+								<h3 class="role">Social Media Intern</h3>
+								<p class="org">Overachiever Magazine</p>
+								<p class="desc">Created the series <em>"Decoding the Definition of STEM"</em>—exploring intersections of STEM with other fields and spotlighting the accomplishments of Asian American women.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🏆</span>
+								<h3 class="role">FidHacks Competitor</h3>
+								<p class="org">Fidelity Investments</p>
+								<p class="desc">Competed in the FidHacks Hackathon, building solutions under time pressure with a team.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🤿</span>
+								<h3 class="role">Underwater Robotics</h3>
+								<p class="org">Competitions</p>
+								<p class="desc">Competed in underwater robotics challenges, blending engineering, problem-solving, and teamwork.</p>
+							</article>
+							<article class="exp-card">
+								<span class="icon" aria-hidden="true">🔬</span>
+								<h3 class="role">CS Student Researcher</h3>
+								<p class="org">Summer Research and Innovation Program, NCSSM</p>
+								<p class="desc">Computer science research at the North Carolina School of Science and Mathematics—exploring cutting-edge topics and contributing to ongoing projects.</p>
+							</article>
+							<article class="exp-card exp-card-cta">
+								<span class="icon" aria-hidden="true">🌸</span>
+								<h3 class="role">More to come</h3>
+								<p class="org">Always building</p>
+								<p class="desc">Curious about my full resume? Check out the link above or reach out—I'd love to connect!</p>
+							</article>
+						</div>
 
 					</div>
 
