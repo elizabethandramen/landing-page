@@ -24,25 +24,8 @@
 			}
 			.travels-coming-soon .content { position: relative; z-index: 1; text-align: center; padding: 2em; }
 			.travels-coming-soon h1 { font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 0.5em; }
-			.travels-coming-soon .letters { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0.05em; }
-			.travels-coming-soon .letters span { display: inline-block; opacity: 0; animation: travel-letter-pop 0.5s ease-out forwards; }
-			.travels-coming-soon .letters span:nth-child(1) { animation-delay: 0.1s; }
-			.travels-coming-soon .letters span:nth-child(2) { animation-delay: 0.15s; }
-			.travels-coming-soon .letters span:nth-child(3) { animation-delay: 0.2s; }
-			.travels-coming-soon .letters span:nth-child(4) { animation-delay: 0.25s; }
-			.travels-coming-soon .letters span:nth-child(5) { animation-delay: 0.3s; }
-			.travels-coming-soon .letters span:nth-child(6) { animation-delay: 0.35s; }
-			.travels-coming-soon .letters span:nth-child(7) { animation-delay: 0.4s; }
-			.travels-coming-soon .letters span:nth-child(8) { animation-delay: 0.45s; }
-			.travels-coming-soon .letters span:nth-child(9) { animation-delay: 0.5s; }
-			.travels-coming-soon .letters span:nth-child(10) { animation-delay: 0.55s; }
-			.travels-coming-soon .letters span:nth-child(11) { animation-delay: 0.6s; }
-			.travels-coming-soon .letters span:nth-child(12) { animation-delay: 0.65s; }
-			@keyframes travel-letter-pop {
-				0% { opacity: 0; transform: translateY(-20px) scale(0.8); }
-				60% { opacity: 1; transform: translateY(5px) scale(1.05); }
-				100% { opacity: 1; transform: translateY(0) scale(1); }
-			}
+			.travels-coming-soon h1::after { display: none !important; }
+			.travels-coming-soon .coming-soon-text { font-size: 1.5rem; font-weight: 600; color: inherit; margin: 0.25em 0; animation: travel-fade-up 0.8s ease-out 0.3s both; }
 			.travels-coming-soon .tagline { font-size: 1.2rem; color: rgba(140,91,74,0.7); margin: 1em 0; animation: travel-fade-up 0.8s ease-out 0.8s both; }
 			@keyframes travel-fade-up {
 				from { opacity: 0; transform: translateY(15px); }
@@ -118,7 +101,7 @@
 					</div>
 					<div class="content inner">
 						<h1>Travels ✈️</h1>
-						<div class="letters"><span>C</span><span>o</span><span>m</span><span>i</span><span>n</span><span>g</span><span> </span><span>S</span><span>o</span><span>o</span><span>n</span></div>
+						<p class="coming-soon-text">Coming Soon</p>
 						<p class="tagline">Packing the passport vibes—adventures & memories landing soon! 🌍</p>
 						<div class="emoji-row">
 							<span>✈️</span><span>🌍</span><span>📸</span><span>🗺️</span><span>🌸</span>
