@@ -109,6 +109,77 @@
 			}
 		}
 
+		.who-is-section { padding: 2.5em 0 3.5em; }
+		.who-is-intro {
+			margin-bottom: 3.5em; text-align: center;
+			background: #f5ebe6 !important;
+			padding: 2.5em 2em !important;
+			border-radius: 20px !important;
+			max-width: 42em; margin-left: auto; margin-right: auto;
+			box-shadow: 0 8px 32px rgba(140,91,74,0.12) !important;
+			border: 2px solid rgba(166,124,107,0.35) !important;
+			border-left: 6px solid #e8c4c9 !important;
+		}
+		.who-is-intro .major { margin-bottom: 0.75em; }
+		.who-is-intro .major h2 { font-size: 1.75rem !important; color: #6d4a3a !important; letter-spacing: 0.02em; }
+		.who-is-intro .major h2::after { background: linear-gradient(90deg, transparent, #e8c4c9, transparent) !important; height: 2px !important; margin: 0.5em auto 0 !important; max-width: 4em !important; display: block !important; }
+		.who-is-intro p { margin-bottom: 1.75em; max-width: 32em; margin-left: auto; margin-right: auto; color: #6d4a3a !important; font-size: 1.08rem !important; line-height: 1.65; }
+		.who-is-intro .actions { margin-bottom: 0; display: flex; justify-content: center; }
+		.who-is-intro .button.next {
+			background: linear-gradient(135deg, #74a12e 0%, #b9dca9 100%) !important;
+			color: #fff !important;
+			border: none !important;
+			border-radius: 10px !important;
+			padding-right: 4.5em !important;
+			padding-left: 1.75em !important;
+			height: 3.25em !important;
+			line-height: 3.25em !important;
+			font-weight: 600 !important;
+			font-size: 0.95rem !important;
+			text-transform: none !important;
+			letter-spacing: 0.03em !important;
+			box-shadow: 0 4px 16px rgba(116,161,46,0.3) !important;
+			transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+		}
+		.who-is-intro .button.next::before,
+		.who-is-intro .button.next::after { filter: brightness(0) invert(1); }
+		.who-is-intro .button.next:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(116,161,46,0.35) !important; background: linear-gradient(135deg, #7fad35 0%, #c0e2a5 100%) !important; color: #fff !important; }
+		.who-is-extras { margin-top: 3.5em; padding-top: 3em; }
+		.spotify-github-row { display: flex; flex-wrap: wrap; gap: 2.5rem; margin-top: 0; justify-content: center; align-items: flex-start; margin-bottom: 3.5em; }
+		.spotify-github-item { flex: 1 1 320px; max-width: 480px; }
+		.spotify-github-label { font-weight: 600; color: #6d4a3a; margin-bottom: 1em; font-size: 1.05rem; }
+		.spotify-embed-wrap { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(140,91,74,0.12); height: 352px; }
+		.spotify-embed-wrap iframe { display: block; }
+		.github-card { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 352px; padding: 2rem; background: #a67c6b; border: none; border-radius: 12px; box-shadow: 0 4px 20px rgba(140,91,74,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; color: inherit; text-decoration: none; text-align: center; }
+		.github-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(140,91,74,0.14); }
+		.github-avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; display: block; }
+		.github-cta { font-weight: 600; color: #fdf8f6; }
+		.orgs-section { padding-top: 2.5em; }
+		.org-card, .org-card-top, .org-card-bottom { border: none !important; }
+		.orgs-label { font-weight: 600; color: #6d4a3a; margin-bottom: 1.25em; font-size: 1.05rem; text-align: center; }
+		@media (max-width: 768px) {
+			.spotify-github-item { max-width: 100%; }
+			.who-is-extras { margin-top: 2em; padding-top: 2em; }
+			.spotify-github-row { gap: 2rem; margin-bottom: 2.5em; }
+			.who-is-intro { padding: 2em 1.5em; }
+		}
+
+		/* Organizations - Notion style cards */
+		.org-cards { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 0; justify-content: center; }
+		.org-card { width: 140px; border-radius: 12px; overflow: hidden; border: none; box-shadow: none; outline: none; transition: transform 0.25s ease, box-shadow 0.25s ease; cursor: default; background: #fff; }
+		.org-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+		.org-card-top { height: 48px; flex-shrink: 0; }
+		.org-card-bottom { background: #fff; padding: 1rem 0.75rem; text-align: center; min-height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem; border: none; box-shadow: none; }
+		.org-icon { font-size: 1.5rem; }
+		.org-name { font-weight: 600; font-size: 0.85rem; color: #6d4a3a; line-height: 1.2; }
+		.org-card-1 .org-card-top { background: linear-gradient(135deg, #ffecd2 0%, #fcbcb4 100%); }
+		.org-card-2 .org-card-top { background: linear-gradient(135deg, #a8d5ba 0%, #97d4b2 100%); }
+		.org-card-3 .org-card-top { background: linear-gradient(135deg, #f0cf5c 0%, #e8c547 100%); }
+		.org-card-4 .org-card-top { background: linear-gradient(135deg, #ffc8dd 0%, #ffafcc 100%); }
+		.org-card-5 .org-card-top { background: linear-gradient(135deg, #bde0fe 0%, #a2d2ff 100%); }
+		.org-card-6 .org-card-top { background: linear-gradient(135deg, #cdb4db 0%, #e0aed0 100%); }
+		.org-card-7 .org-card-top { background: linear-gradient(135deg, #a8dadc 0%, #9ed8db 100%); }
+
 		/* Mac windows: transparent background */
 		#data-windows,
 		#data-windows .inner,
@@ -350,14 +421,45 @@
 						
 
 				<!-- Me -->
-					<div class="inner">
-						<header class="major">
-							<h2>Who is Elizabeth Chanda?</h2>
-						</header>
-						<p>Learn more about my career goals, achievements, and personal interests!</p>
-						<ul class="actions">
-							<li><a href="pages/elements.html" class="button next">Click Here</a></li>
-						</ul>
+					<div class="inner who-is-section">
+						<section class="who-is-intro">
+							<header class="major">
+								<h2>Who is Elizabeth Chanda?</h2>
+							</header>
+							<p>Learn more about my career goals, achievements, and personal interests!</p>
+							<ul class="actions">
+								<li><a href="pages/elements.html" class="button next">Click Here</a></li>
+							</ul>
+						</section>
+						<section class="who-is-extras">
+							<div class="spotify-github-row">
+								<div class="spotify-github-item">
+									<p class="spotify-github-label">What's on repeat right now 🎵</p>
+									<div class="spotify-embed-wrap">
+										<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4WYpdgoIcn6?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+									</div>
+								</div>
+								<div class="spotify-github-item">
+									<p class="spotify-github-label">GitHub 💻</p>
+									<a href="https://github.com/elizabethchanda27" target="_blank" rel="noopener noreferrer" class="github-card">
+										<img src="https://github.com/elizabethchanda27.png" alt="GitHub profile" class="github-avatar" loading="lazy">
+										<span class="github-cta">View my GitHub →</span>
+									</a>
+								</div>
+							</div>
+							<section class="orgs-section">
+								<p class="orgs-label">Organizations</p>
+								<div class="org-cards">
+							<div class="org-card org-card-1"><div class="org-card-top"></div><div class="org-card-bottom"><span class="org-icon">📘</span><span class="org-name">TAASCON</span></div></div>
+							<div class="org-card org-card-2"><div class="org-card-top"></div><div class="org-card-bottom"><span class="org-icon">👩‍💻</span><span class="org-name">Girls Who Code</span></div></div>
+							<div class="org-card org-card-3"><div class="org-card-top"></div><div class="org-card-bottom"><span class="org-icon">🌏</span><span class="org-name">AASC</span></div></div>
+							<div class="org-card org-card-4"><div class="org-card-top"></div><div class="org-card-bottom"><span class="org-icon">🎓</span><span class="org-name">Harvard WeCode</span></div></div>
+							<div class="org-card org-card-5"><div class="org-card-top"></div><div class="org-card-bottom"><span class="org-icon">💡</span><span class="org-name">UNC CSSG</span></div></div>
+							<div class="org-card org-card-6"><div class="org-card-top"></div><div class="org-card-bottom"><span class="org-icon">🖥️</span><span class="org-name">UNC Student Technology Council</span></div></div>
+							<div class="org-card org-card-7"><div class="org-card-top"></div><div class="org-card-bottom"><span class="org-icon">⚡</span><span class="org-name">HackNC</span></div></div>
+								</div>
+							</section>
+						</section>
 					</div>
 				</section>
 
